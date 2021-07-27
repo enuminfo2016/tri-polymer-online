@@ -61,8 +61,3 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: validate
-
----
-app:
-  jwtSecret: triPolymerSecretKey
-  jwtExpirationMs: 86400000
