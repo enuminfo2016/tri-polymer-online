@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +32,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.ACCESS)
+@Table(name = TableType.ACCESS)
 public class Access implements Serializable {
 
 	/**
@@ -42,13 +42,13 @@ public class Access implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.NAME)
+	@Column(name = ColumnType.NAME)
 	private String name;
 
-	@Column(name = IColumnType.DESCRIPTION)
+	@Column(name = ColumnType.DESCRIPTION)
 	private String description;
 
 	public String getName() {

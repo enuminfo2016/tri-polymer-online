@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +32,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.USER_ORDERED_ITEM)
+@Table(name = TableType.USER_ORDERED_ITEM)
 public class UserOrderedItem implements Serializable {
 
 	/**
@@ -42,19 +42,19 @@ public class UserOrderedItem implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.USER_ORDER)
+	@Column(name = ColumnType.USER_ORDER)
 	private Long userOrder;
 
-	@Column(name = IColumnType.PRODUCT)
+	@Column(name = ColumnType.PRODUCT)
 	private Long product;
 
-	@Column(name = IColumnType.QUANTITY)
+	@Column(name = ColumnType.QUANTITY)
 	private Double quantity;
 
-	@Column(name = IColumnType.PRICE)
+	@Column(name = ColumnType.PRICE)
 	private Double price;
 
 	public Long getId() {

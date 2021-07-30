@@ -3,8 +3,8 @@
  */
 package com.springcloud.microservice.data.model;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.COUNTRY)
+@Table(name = TableType.COUNTRY)
 public class Country extends Base {
 
 	/**
@@ -29,13 +29,13 @@ public class Country extends Base {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = IColumnType.NAME)
+	@Column(name = ColumnType.NAME)
 	private String name;
 
-	@Column(name = IColumnType.ISO)
+	@Column(name = ColumnType.ISO)
 	private String iso;
 
-	@Column(name = IColumnType.ISD)
+	@Column(name = ColumnType.ISD)
 	private String isd;
 
 	public String getName() {

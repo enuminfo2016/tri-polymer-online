@@ -12,14 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 /**
  * @author SIVA KUMAR
  */
 @Entity
-@Table(name = ITableType.DELIVERY_LOCATION)
+@Table(name = TableType.DELIVERY_LOCATION)
 public class DeliveryLocation implements Serializable {
 
 	/**
@@ -29,19 +29,19 @@ public class DeliveryLocation implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.VALUE1)
+	@Column(name = ColumnType.VALUE1)
 	private String street;
 
-	@Column(name = IColumnType.VALUE2)
+	@Column(name = ColumnType.VALUE2)
 	private String landmark1;
 
-	@Column(name = IColumnType.VALUE3)
+	@Column(name = ColumnType.VALUE3)
 	private String landmark2;
 
-	@Column(name = IColumnType.LOCATION)
+	@Column(name = ColumnType.LOCATION)
 	private Long location;
 
 	public Long getId() {

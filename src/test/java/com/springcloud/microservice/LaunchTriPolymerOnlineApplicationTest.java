@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public abstract class TriPolymerFrontendApplicationTest {
+public abstract class LaunchTriPolymerOnlineApplicationTest {
 
     @Autowired WebApplicationContext webApplicationContext;
     MockMvc mockMvc;

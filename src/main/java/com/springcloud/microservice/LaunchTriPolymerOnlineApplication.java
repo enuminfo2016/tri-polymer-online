@@ -45,15 +45,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableSwagger2
-public class TriPolymerFrontendApplication extends SpringBootServletInitializer implements CommandLineRunner {
+public class LaunchTriPolymerOnlineApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
-	private static final Logger log = LoggerFactory.getLogger(TriPolymerFrontendApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(LaunchTriPolymerOnlineApplication.class);
     private Model model;
     @Autowired ApplicationContext applicationContext;
     @Autowired Environment environment;
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(TriPolymerFrontendApplication.class);
+		SpringApplication app = new SpringApplication(LaunchTriPolymerOnlineApplication.class);
         app.run(args);
 	}
 	
@@ -100,8 +100,7 @@ public class TriPolymerFrontendApplication extends SpringBootServletInitializer 
 		DataSourceInitializer dataSourceInitializer = null;
 		for (File file : listOfFiles) {
 			log.info("=============== validating {} in {} ===============", file.getName(), activeEnv.name());
-			if (!activeEnv.name().equalsIgnoreCase(EnvironmentEnum.PROD.name())  
-					&& !activeEnv.name().equalsIgnoreCase(EnvironmentEnum.QA.name())
+			if (!activeEnv.name().equalsIgnoreCase(EnvironmentEnum.TEST.name())
 					&& !activeEnv.name().equalsIgnoreCase(EnvironmentEnum.STAGE.name())) {
 				dataSourceInitializer = new DataSourceInitializer();
 				dataSourceInitializer.setDataSource(dataSource);

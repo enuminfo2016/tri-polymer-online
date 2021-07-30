@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +32,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.USER)
+@Table(name = TableType.USER)
 public class User implements Serializable {
 
 	/**
@@ -42,31 +42,31 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.FIRST_NAME)
+	@Column(name = ColumnType.FIRST_NAME)
 	private String firstName;
 
-	@Column(name = IColumnType.MIDDLE_NAME)
+	@Column(name = ColumnType.MIDDLE_NAME)
 	private String middleName;
 
-	@Column(name = IColumnType.LAST_NAME)
+	@Column(name = ColumnType.LAST_NAME)
 	private String lastName;
 
-	@Column(name = IColumnType.EMAIL)
+	@Column(name = ColumnType.EMAIL)
 	private String email;
 
-	@Column(name = IColumnType.PHONE)
+	@Column(name = ColumnType.PHONE)
 	private Long phone;
 
-	@Column(name = IColumnType.PASSWORD)
+	@Column(name = ColumnType.PASSWORD)
 	private String password;
 
-	@Column(name = IColumnType.ACCESS)
+	@Column(name = ColumnType.ACCESS)
 	private String access;
 	
-	@Column(name = IColumnType.USERNAME)
+	@Column(name = ColumnType.USERNAME)
 	private String username;
 
 	public String getEmail() {

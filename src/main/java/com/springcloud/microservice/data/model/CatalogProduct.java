@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +33,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.CATALOG_PRODUCT)
+@Table(name = TableType.CATALOG_PRODUCT)
 public class CatalogProduct implements Serializable {
 
 	/**
@@ -43,19 +43,19 @@ public class CatalogProduct implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.CATALOG)
+	@Column(name = ColumnType.CATALOG)
 	private Long catalog;
 
-	@Column(name = IColumnType.PRODUCT)
+	@Column(name = ColumnType.PRODUCT)
 	private Long product;
 
-	@JoinColumn(name = IColumnType.QUANTITY)
+	@JoinColumn(name = ColumnType.QUANTITY)
 	private Double quantity;
 
-	@JoinColumn(name = IColumnType.PRICE)
+	@JoinColumn(name = ColumnType.PRICE)
 	private Double price;
 
 	public Long getId() {

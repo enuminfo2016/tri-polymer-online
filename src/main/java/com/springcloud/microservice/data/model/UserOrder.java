@@ -15,8 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +35,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.USER_ORDER)
+@Table(name = TableType.USER_ORDER)
 public class UserOrder implements Serializable {
 
 	/**
@@ -45,27 +45,27 @@ public class UserOrder implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.USER)
+	@Column(name = ColumnType.USER)
 	private Long user;
 
-	@Column(name = IColumnType.STATUS)
+	@Column(name = ColumnType.STATUS)
 	private String status;
 
-	@Column(name = IColumnType.DELIVERY_STATUS)
+	@Column(name = ColumnType.DELIVERY_STATUS)
 	private String deliveryStatus;
 
-	@Column(name = IColumnType.DRAFTED_DATE)
+	@Column(name = ColumnType.DRAFTED_DATE)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date draftedDate;
 
-	@Column(name = IColumnType.ORDERED_DATE)
+	@Column(name = ColumnType.ORDERED_DATE)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderedDate;
 
-	@Column(name = IColumnType.CANCELLED_DATE)
+	@Column(name = ColumnType.CANCELLED_DATE)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date cancelledDate;
 

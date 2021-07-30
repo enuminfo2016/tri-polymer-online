@@ -8,5 +8,5 @@ package com.springcloud.microservice.util;
  */
 public enum EnvironmentEnum {
 
-	DEV, QA, STAGE, PROD
+	DEVELOPMENT, TEST, STAGE
 }

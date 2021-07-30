@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springcloud.microservice.rest.IRequestPath;
+import com.springcloud.microservice.rest.RequestPath;
 import com.springcloud.microservice.rest.dto.UserOrderDto;
 import com.springcloud.microservice.rest.dto.UserOrderedItemDto;
 import com.springcloud.microservice.service.IUserOrderService;
@@ -32,19 +32,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping(value = IRequestPath.SECURED_REST_ENDPOINT)
+@RequestMapping(value = RequestPath.SECURED_REST_ENDPOINT)
 public class UserController {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired IUserService userService;
     @Autowired IUserOrderService userOrderService;
 
-	@GetMapping(value = IRequestPath.USER_DRAFTED_ITEMS)
+	@GetMapping(value = RequestPath.USER_DRAFTED_ITEMS)
 	public List<UserOrderDto> handleInternalRequestForUserDraftedItems(@PathVariable long value) {
 		return userOrderService.getUserOrderByStatus(value, StatusTypeEnum.DRAFTED.toString());
 	}
 
-	@PostMapping(value = IRequestPath.SAVE_USER_ORDERED_ITEMS)
+	@PostMapping(value = RequestPath.SAVE_USER_ORDERED_ITEMS)
 	public void handleInternalRequestForSaveUserOrderedIteams(@RequestBody UserOrderDto[] dtos) {
 		for (UserOrderDto dto : dtos) {
 			dto.setStatus(StatusTypeEnum.ORDERED.toString());
@@ -58,13 +58,13 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(value = IRequestPath.USER_ORDERED_ITEMS)
+	@GetMapping(value = RequestPath.USER_ORDERED_ITEMS)
 	public List<UserOrderDto> handleInternalRequestForUserOrderedItems(@PathVariable long value) {
 		log.info("### UserController.handleInternalRequestForUserOrderedItems ... ");
 		return userOrderService.getUserConfirmedOrders(value, StatusTypeEnum.ORDERED.toString(), StatusTypeEnum.DELIVERY_SCHEDULED.toString());
 	}
 
-	@PostMapping(value = IRequestPath.USER_CANCELLED_ITEMS)
+	@PostMapping(value = RequestPath.USER_CANCELLED_ITEMS)
 	public void handleInternalRequestForCancelledUserOrderedItems(@RequestBody UserOrderDto[] dtos) {
 		for (UserOrderDto dto : dtos) {
 			dto.setStatus(StatusTypeEnum.CANCELLED.toString());
@@ -78,7 +78,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(value = IRequestPath.USER_SELECTED_PRODUCT_ITEMS)
+	@GetMapping(value = RequestPath.USER_SELECTED_PRODUCT_ITEMS)
 	public List<UserOrderedItemDto> handleInternalRequestForUserOrderedItemsByProductId(@PathVariable String value) {
 		log.info("### UserController.handleInternalRequestForUserOrderedItemsByProductId ... ");
 		return userOrderService.getAllUserOrderedItemsByProduct(value);
