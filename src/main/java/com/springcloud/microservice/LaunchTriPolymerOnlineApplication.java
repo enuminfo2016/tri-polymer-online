@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 
@@ -46,15 +45,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableSwagger2
-public class TriPolymerFrontendApplication extends SpringBootServletInitializer implements CommandLineRunner {
+public class LaunchTriPolymerOnlineApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
-	private static final Logger log = LoggerFactory.getLogger(TriPolymerFrontendApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(LaunchTriPolymerOnlineApplication.class);
     private Model model;
     @Autowired ApplicationContext applicationContext;
     @Autowired Environment environment;
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(TriPolymerFrontendApplication.class);
+		SpringApplication app = new SpringApplication(LaunchTriPolymerOnlineApplication.class);
         app.run(args);
 	}
 	
@@ -87,33 +86,30 @@ public class TriPolymerFrontendApplication extends SpringBootServletInitializer 
 	}
 	
 	@Bean
-	public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) {
-		DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
-		dataSourceInitializer.setDataSource(dataSource);
-		try (Connection connection = dataSource.getConnection()) {
-			log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Catalog -> {}", connection.getCatalog());
-			log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver Name -> {}", connection.getMetaData().getDriverName());
-			log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver Version -> {}", connection.getMetaData().getDriverVersion());
-			log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver URL -> {}", connection.getMetaData().getURL());
-			log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver User -> {}", connection.getMetaData().getUserName());
-			EnvironmentEnum activeEnv = EnvironmentEnum.valueOf(environment.getActiveProfiles()[0].toUpperCase());
-			log.info("Active Profile : {}", activeEnv.name());
-			File dbMigrateFiles = ResourceUtils.getFile("classpath:db/migrate/");
-			File[] listOfFiles = dbMigrateFiles.listFiles();
-			Arrays. sort(listOfFiles);
-			for (File file : listOfFiles) {
-				log.info("=============== validating {} in {} ===============", file.getName(), activeEnv.name());
-				if (!activeEnv.name().equalsIgnoreCase(EnvironmentEnum.TEST.name())
-						&& !activeEnv.name().equalsIgnoreCase(EnvironmentEnum.STAGE.name())) {
-					ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
-				    resourceDatabasePopulator.addScript(new ClassPathResource("/db/migrate/" + file.getName()));
-				    dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
-				    log.info("=============== processing {} in {} ===============", file.getName(), activeEnv.name());
-				    resourceDatabasePopulator.execute(dataSource);
-				}
+	public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) throws SQLException, FileNotFoundException {
+		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Catalog -> {}", dataSource.getConnection().getCatalog());
+		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver Name -> {}", dataSource.getConnection().getMetaData().getDriverName());
+		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver Version -> {}", dataSource.getConnection().getMetaData().getDriverVersion());
+		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver URL -> {}", dataSource.getConnection().getMetaData().getURL());
+		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver User -> {}", dataSource.getConnection().getMetaData().getUserName());
+		EnvironmentEnum activeEnv = EnvironmentEnum.valueOf(environment.getActiveProfiles()[0].toUpperCase());
+		log.info("Active Profile : {}", activeEnv.name());
+		File dbMigrateFiles = ResourceUtils.getFile("classpath:db/migrate/");
+		File[] listOfFiles = dbMigrateFiles.listFiles();
+		Arrays. sort(listOfFiles);
+		DataSourceInitializer dataSourceInitializer = null;
+		for (File file : listOfFiles) {
+			log.info("=============== validating {} in {} ===============", file.getName(), activeEnv.name());
+			if (!activeEnv.name().equalsIgnoreCase(EnvironmentEnum.TEST.name())
+					&& !activeEnv.name().equalsIgnoreCase(EnvironmentEnum.STAGE.name())) {
+				dataSourceInitializer = new DataSourceInitializer();
+				dataSourceInitializer.setDataSource(dataSource);
+				ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+			    resourceDatabasePopulator.addScript(new ClassPathResource("/db/migrate/" + file.getName()));
+			    dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
+			    log.info("=============== processing {} in {} ===============", file.getName(), activeEnv.name());
+			    resourceDatabasePopulator.execute(dataSource);
 			}
-		} catch (SQLException | FileNotFoundException e) {
-			e.printStackTrace();
 		}
 	    return dataSourceInitializer;
 	}

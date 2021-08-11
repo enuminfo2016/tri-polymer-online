@@ -3,7 +3,7 @@
  */
 package com.springcloud.microservice.data.model;
 
-import com.springcloud.microservice.data.IColumnType;
+import com.springcloud.microservice.data.ColumnType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,23 +29,23 @@ public abstract class Base implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = IColumnType.ID)
+	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = IColumnType.STATUS)
+	@Column(name = ColumnType.STATUS)
 	private Boolean status;
 
-	@Column(name = IColumnType.CREATED_BY)
+	@Column(name = ColumnType.CREATED_BY)
 	private String createdBy;
 
-	@Column(name = IColumnType.CREATED_ON)
+	@Column(name = ColumnType.CREATED_ON)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
 
-	@Column(name = IColumnType.UPDATED_BY)
+	@Column(name = ColumnType.UPDATED_BY)
 	private String updatedBy;
 
-	@Column(name = IColumnType.UPDATED_ON)
+	@Column(name = ColumnType.UPDATED_ON)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 

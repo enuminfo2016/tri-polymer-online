@@ -3,8 +3,8 @@
  */
 package com.springcloud.microservice.data.model;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +19,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.LOCATION)
+@Table(name = TableType.LOCATION)
 public class Location extends Base {
 
 	/**
@@ -27,19 +27,19 @@ public class Location extends Base {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = IColumnType.NAME)
+	@Column(name = ColumnType.NAME)
 	private String name;
 
-	@Column(name = IColumnType.PIN)
+	@Column(name = ColumnType.PIN)
 	private Long pin;
 
-	@Column(name = IColumnType.CITY)
+	@Column(name = ColumnType.CITY)
 	private String city;
 
-	@Column(name = IColumnType.STATE)
+	@Column(name = ColumnType.STATE)
 	private String state;
 
-	@Column(name = IColumnType.COUNTRY)
+	@Column(name = ColumnType.COUNTRY)
 	private Long country;
 
 	public String getName() {

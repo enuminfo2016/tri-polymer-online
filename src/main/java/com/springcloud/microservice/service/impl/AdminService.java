@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.springcloud.microservice.data.model.Category;
 import com.springcloud.microservice.data.model.Product;
+import com.springcloud.microservice.data.model.ProductImage;
 import com.springcloud.microservice.data.repository.ICatalogProductRepository;
 import com.springcloud.microservice.data.repository.ICatalogRepository;
 import com.springcloud.microservice.data.repository.ICategoryRepository;
 import com.springcloud.microservice.data.repository.IDeliveryLocationRepository;
+import com.springcloud.microservice.data.repository.IProductImageRepository;
 import com.springcloud.microservice.data.repository.IProductRepository;
 import com.springcloud.microservice.data.repository.IUserOrderedItemRepository;
 import com.springcloud.microservice.rest.dto.CatalogDto;
@@ -23,6 +25,7 @@ import com.springcloud.microservice.rest.dto.LocationDto;
 import com.springcloud.microservice.rest.dto.ProductDto;
 import com.springcloud.microservice.service.IAdminService;
 import com.springcloud.microservice.util.Constants;
+import com.springcloud.microservice.util.ImageUtil;
 
 /**
  * @author SIVA KUMAR
@@ -36,6 +39,7 @@ public class AdminService implements IAdminService {
 	@Autowired ICatalogProductRepository catalogProductRepository;
 	@Autowired IUserOrderedItemRepository userOrderedItemRepository;
 	@Autowired IDeliveryLocationRepository deliveryLocationRepository;
+	@Autowired IProductImageRepository productImageRepository;
 
 	@Override
 	public void saveCategory(CategoryDto dto) throws ParseException {
@@ -121,6 +125,12 @@ public class AdminService implements IAdminService {
 			Category existingCategory = (optionalCategory.isPresent() ? optionalCategory.get() : null);
 			if (existingCategory != null)
 				dto.setCategory(existingCategory.getName());
+			Iterable<ProductImage> productImages = productImageRepository.findByProduct(product.getId());
+			Map<String, Object> images = new HashMap<>();
+			productImages.forEach(productImage -> {
+				images.put(productImage.getImgName(), ImageUtil.decompressBytes(productImage.getImgData()));
+			});
+			dto.setImages(images);
 			dtos.add(dto);
 		}
 		return dtos;

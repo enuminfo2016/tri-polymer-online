@@ -7,8 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +27,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.PRODUCT)
+@Table(name = TableType.PRODUCT)
 public class Product extends Base {
 
 	/**
@@ -35,13 +35,13 @@ public class Product extends Base {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = IColumnType.NAME)
+	@Column(name = ColumnType.NAME)
 	private String name;
 	
-	@Column(name = IColumnType.DESCRIPTION)
+	@Column(name = ColumnType.DESCRIPTION)
 	private String description;
 
-	@Column(name = IColumnType.CATEGORY)
+	@Column(name = ColumnType.CATEGORY)
 	private Long category;
 
 	public String getName() {

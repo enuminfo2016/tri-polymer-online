@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springcloud.microservice.rest.IRequestPath;
+import com.springcloud.microservice.rest.RequestPath;
 import com.springcloud.microservice.rest.dto.CatalogDto;
 import com.springcloud.microservice.rest.dto.CategoryDto;
 import com.springcloud.microservice.rest.dto.LocationDto;
@@ -32,19 +32,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping(value = IRequestPath.SECURED_REST_ENDPOINT)
+@RequestMapping(value = RequestPath.SECURED_REST_ENDPOINT)
 public class AdminController {
 	
 	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 	@Autowired IAdminService adminService;
 
-	@GetMapping(value = IRequestPath.CATEGORIES)
+	@GetMapping(value = RequestPath.CATEGORIES)
 	public List<CategoryDto> handleInternalRequestForAllCategories() {
 		log.info("### AdminController.handleInternalRequestForAllCategories ... ");
 		return adminService.getAllCategories();
 	}
 	
-	@PostMapping(value = IRequestPath.CATEGORIES)
+	@PostMapping(value = RequestPath.CATEGORIES)
 	public void handleInternalRequestForSaveCategory(@RequestBody CategoryDto dto) {
 		try {
 			log.info("### AdminController.handleInternalRequestForSaveCategory ... ");
@@ -54,13 +54,13 @@ public class AdminController {
 		}
 	}
 	
-	@GetMapping(value = IRequestPath.PRODUCTS)
+	@GetMapping(value = RequestPath.PRODUCTS)
 	public List<ProductDto> handleInternalRequestForAllProducts() {
 		log.info("### AdminController.handleInternalRequestForAllProducts ... ");
 		return adminService.getAllProducts();
 	}
 	
-	@PostMapping(value = IRequestPath.PRODUCTS)
+	@PostMapping(value = RequestPath.PRODUCTS)
 	public void handleInternalRequestForSaveProduct(@RequestBody ProductDto dto) {
 		try {
 			log.info("### AdminController.handleInternalRequestForSaveProduct ... ");
@@ -70,13 +70,13 @@ public class AdminController {
 		}
 	}
 	
-	@GetMapping(value = IRequestPath.CATALOG)
+	@GetMapping(value = RequestPath.CATALOG)
 	public List<CatalogDto> handleInternalRequestForAllCatalogs() {
 		log.info("### AdminController.handleInternalRequestForAllCatalogs ... ");
 		return adminService.getAllCatalogs();
 	}
 	
-	@PostMapping(value = IRequestPath.CATALOG)
+	@PostMapping(value = RequestPath.CATALOG)
 	public void handleInternalRequestForSaveCatalog(@RequestBody CatalogDto dto) {
 		try {
 			log.info("### AdminController.handleInternalRequestForSaveCatalog ... ");
@@ -86,19 +86,19 @@ public class AdminController {
 		}
 	}
 	
-	@GetMapping (value = IRequestPath.DELIVERY_LOCATIONS)
+	@GetMapping (value = RequestPath.DELIVERY_LOCATIONS)
 	public List<LocationDto> handleInteralRequestForAllDeliveryLocations() {
 		log.info("### AdminController.handleInteralRequestForAllDeliveryLocations ... ");
 		return adminService.getAllDeliveryLocations();
 	}
 	
-	@GetMapping (value = IRequestPath.DELIVERY_LOCATIONS_BY_LOCATION)
+	@GetMapping (value = RequestPath.DELIVERY_LOCATIONS_BY_LOCATION)
 	public List<LocationDto> handleInteralRequestForAllDeliveryLocationsByLocation(@PathVariable String value) {
 		log.info("### AdminController.handleInteralRequestForAllDeliveryLocationsByLocation ... ");
 		return adminService.getAllDeliveryLocations(value);
 	}
 	
-	@PostMapping(value = IRequestPath.DELIVERY_LOCATIONS)
+	@PostMapping(value = RequestPath.DELIVERY_LOCATIONS)
 	public void handleInternalRequestForSaveDeliveryLocation(@RequestBody LocationDto dto) {
 		try {
 			log.info("### AdminController.handleInternalRequestForSaveDeliveryLocation ... ");

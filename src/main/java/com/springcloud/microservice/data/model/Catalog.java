@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.springcloud.microservice.data.IColumnType;
-import com.springcloud.microservice.data.ITableType;
+import com.springcloud.microservice.data.ColumnType;
+import com.springcloud.microservice.data.TableType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +31,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = ITableType.CATALOG)
+@Table(name = TableType.CATALOG)
 public class Catalog extends Base {
 
 	/**
@@ -39,14 +39,14 @@ public class Catalog extends Base {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = IColumnType.NAME)
+	@Column(name = ColumnType.NAME)
 	private String name;
 
-	@Column(name = IColumnType.START)
+	@Column(name = ColumnType.START)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 
-	@Column(name = IColumnType.END)
+	@Column(name = ColumnType.END)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endDate;
 

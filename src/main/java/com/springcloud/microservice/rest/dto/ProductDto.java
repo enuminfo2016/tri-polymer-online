@@ -3,6 +3,8 @@
  */
 package com.springcloud.microservice.rest.dto;
 
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -28,6 +30,7 @@ public class ProductDto extends BaseDto {
 	private String name;
 	private String description;
 	private String category;
+	private Map<String, Object> images;
 
 	public String getName() {
 		return name;
@@ -51,5 +54,13 @@ public class ProductDto extends BaseDto {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public Map<String, Object> getImages() {
+		return images;
+	}
+
+	public void setImages(Map<String, Object> images) {
+		this.images = images;
 	}
 }
