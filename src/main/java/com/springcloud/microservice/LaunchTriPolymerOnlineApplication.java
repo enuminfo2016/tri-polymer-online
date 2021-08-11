@@ -64,7 +64,7 @@ public class LaunchTriPolymerOnlineApplication extends SpringBootServletInitiali
 
 	@Override
 	public void run(String... args) throws Exception {
-		log.info("TriPolymerFrontendApplicationTest.CommandLineRunner.run() -> {}", args.length);
+		log.info("LaunchTriPolymerOnlineApplication.CommandLineRunner.run() -> {}", args.length);
 		String[] beanNames = applicationContext.getBeanDefinitionNames();
         Arrays.sort(beanNames);
 	}
@@ -78,7 +78,7 @@ public class LaunchTriPolymerOnlineApplication extends SpringBootServletInitiali
         try {
             model = new MavenXpp3Reader().read(new FileReader("pom.xml"));
         } catch (IOException | XmlPullParserException e) {
-            log.error("TriPolymerFrontendApplicationTest.metaData() -> {}", e.getMessage());
+            log.error("LaunchTriPolymerOnlineApplication.metaData() -> {}", e.getMessage());
         }
         return new ApiInfo(model.getName(), model.getDescription(), model.getVersion(), "Terms of service",
                 new Contact("EI Team", "https://enuminfo.com/", "enuminfo2016@gmail.com"), "Apache License Version 2.0",
@@ -87,11 +87,11 @@ public class LaunchTriPolymerOnlineApplication extends SpringBootServletInitiali
 	
 	@Bean
 	public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) throws SQLException, FileNotFoundException {
-		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Catalog -> {}", dataSource.getConnection().getCatalog());
-		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver Name -> {}", dataSource.getConnection().getMetaData().getDriverName());
-		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver Version -> {}", dataSource.getConnection().getMetaData().getDriverVersion());
-		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver URL -> {}", dataSource.getConnection().getMetaData().getURL());
-		log.info("TriPolymerFrontendApplicationTest.dataSourceInitializer() - Driver User -> {}", dataSource.getConnection().getMetaData().getUserName());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Catalog -> {}", dataSource.getConnection().getCatalog());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Name -> {}", dataSource.getConnection().getMetaData().getDriverName());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Version -> {}", dataSource.getConnection().getMetaData().getDriverVersion());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver URL -> {}", dataSource.getConnection().getMetaData().getURL());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver User -> {}", dataSource.getConnection().getMetaData().getUserName());
 		EnvironmentEnum activeEnv = EnvironmentEnum.valueOf(environment.getActiveProfiles()[0].toUpperCase());
 		log.info("Active Profile : {}", activeEnv.name());
 		File dbMigrateFiles = ResourceUtils.getFile("classpath:db/migrate/");

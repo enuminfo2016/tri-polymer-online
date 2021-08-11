@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.springcloud.microservice.data.ColumnType;
@@ -49,6 +50,7 @@ public class ProductImage implements Serializable {
 	private String imgName; 
 	
 	@Column(name = ColumnType.IMG_DATA)
+	@Lob
     private byte[] imgData;
 
 	@Column(name = ColumnType.IMG_TYPE)

@@ -13,7 +13,7 @@
 	<description>ENUMInfo | Spring Cloud MicroService - API Tri Polymer Online</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.springcloud.microservice.TriPolymerFrontendApplication</start-class>
+		<start-class>com.springcloud.microservice.LaunchTriPolymerOnlineApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
