@@ -33,6 +33,7 @@ public class UserDto extends BaseDto {
 	private String password;
 	private String access;
 	private String username;
+	private boolean loggedIn;
 
 	public String getFirstName() {
 		return firstName;
@@ -96,5 +97,13 @@ public class UserDto extends BaseDto {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 }

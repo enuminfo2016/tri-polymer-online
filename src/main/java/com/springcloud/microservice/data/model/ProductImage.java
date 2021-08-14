@@ -33,7 +33,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-@Table(name = TableType.PRODUCT_IMAGES_DETAIL)
+@Table(name = TableType.PRODUCT_IMAGE)
 public class ProductImage implements Serializable {
 
 	/**

@@ -1,10 +1,12 @@
-DROP TABLE IF EXISTS country_detail;
+DROP TABLE IF EXISTS location;
 
-CREATE TABLE IF NOT EXISTS country_detail (
+CREATE TABLE IF NOT EXISTS location (
 	id integer NOT NULL PRIMARY KEY,
-	name varchar(50) NOT NULL, 
-	iso varchar(20) NOT NULL, 
-	isd varchar(20) NOT NULL,
+    name varchar(50) NOT NULL,
+    pin bigint NOT NULL,
+    city varchar(50) NOT NULL,
+    state varchar(50) NOT NULL,
+	country integer NOT NULL,
 	status boolean DEFAULT true,
 	created_by varchar(25) DEFAULT 'Online',
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,

@@ -106,7 +106,7 @@ public class OnlineService implements IOnlineService {
 	}
 
 	@Override
-	public List<CatalogProductDto> getAllCatalogProductsByCategory(String categoryName) {
+	public List<CatalogProductDto> getAllCatalogProductsByCategory(String category) {
 		List<CatalogProductDto> dtos = new ArrayList<>();
 		List<Date> dates = DateTimeUtil.getInstance().getFinancialYearStartNEndDates();
 		Optional<Catalog> optionalCatalog = catalogRepository.findByDatesBetween(dates.get(0), dates.get(1));
@@ -118,13 +118,11 @@ public class OnlineService implements IOnlineService {
 				Optional<Product> optionalProduct = productRepository.findById(catalogProduct.getProduct());
 				Product product = (optionalProduct.isPresent() ? optionalProduct.get() : null);
 				if (product != null) {
-					Optional<Category> optionalCategory = categoryRepository.findById(product.getCategory());
-					Category category = (optionalCategory.isPresent() ? optionalCategory.get() : null);
-					if (category != null && category.getName().equalsIgnoreCase(categoryName)) {
+					if (Long.parseLong(category) == product.getCategory()) {
 						CatalogProductDto dto = new CatalogProductDto();
 						dto.setId(catalogProduct.getId());
 						dto.setProduct(product.getName());
-						dto.setCategory(category.getName());
+						dto.setCategory(categoryRepository.findById(Long.parseLong(category)).get().getName());
 						dto.setQuantity(catalogProduct.getQuantity());
 						dto.setPrice(catalogProduct.getPrice());
 						double selectedProductQuantity = dto.getQuantity();

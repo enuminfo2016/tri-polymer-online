@@ -42,7 +42,7 @@ public class UserOrderService implements IUserOrderService {
 
 	@Override
 	public void saveDraftedUserOrder(UserOrderDto dto) throws ParseException {
-		User user = userRepository.findByPhone(dto.getMobile());
+		User user = userRepository.findByPhone(dto.getMobile()).get();
 		UserOrder userOrder = new UserOrder();
 		userOrder.setUser(user.getId());
 		userOrder.setStatus(dto.getStatus());

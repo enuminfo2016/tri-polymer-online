@@ -3,6 +3,8 @@
  */
 package com.springcloud.microservice.data.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.springcloud.microservice.data.model.User;
@@ -12,8 +14,6 @@ import com.springcloud.microservice.data.model.User;
  */
 public interface IUserRepository extends PagingAndSortingRepository<User, Long> {
 
-	User findByUsernameAndPassword(String username, String password);
-	User findByUsername(String username);
-	User findByEmail(String email);
-	User findByPhone(Long phone);
+	Optional<User> findByUsernameAndPassword(String username, String password);
+	Optional<User> findByPhone(Long phone);
 }

@@ -3,6 +3,8 @@
  */
 package com.springcloud.microservice.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class UserService implements IUserService {
 	@Autowired IUserRepository userRepository;
 
 	@Override
-	public void save(UserDto dto) {
+	public boolean save(UserDto dto) {
 		User user = new User();
 		user.setEmail(dto.getEmail());
 		user.setPassword(StringUtil.getInstance().generatePassword());
@@ -31,6 +33,30 @@ public class UserService implements IUserService {
 		user.setFirstName(dto.getFirstName());
 		user.setLastName(dto.getLastName());
 		user.setMiddleName(dto.getMiddleName());
-		userRepository.save(user);
+		try {
+			userRepository.save(user);
+			return Boolean.TRUE;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Boolean.FALSE;
+		}
+	}
+
+	@Override
+	public UserDto getDetailByUsernameAndPassword(String username, String password) {
+		UserDto userDto = new UserDto();
+		Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
+		if (optionalUser.isPresent()) {
+			User user = optionalUser.get();
+			userDto.setId(user.getId());
+			userDto.setEmail(user.getEmail());
+			userDto.setAccess(user.getAccess());
+			userDto.setPhone(user.getPhone());
+			userDto.setFirstName(user.getFirstName());
+			userDto.setMiddleName(user.getMiddleName());
+			userDto.setLastName(user.getLastName());
+			userDto.setLoggedIn(Boolean.TRUE);
+		}
+		return userDto;
 	}
 }

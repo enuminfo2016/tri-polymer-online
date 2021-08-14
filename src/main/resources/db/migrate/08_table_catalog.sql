@@ -1,9 +1,10 @@
-DROP TABLE IF EXISTS category_detail;
+DROP TABLE IF EXISTS catalog;
 
-CREATE TABLE IF NOT EXISTS category_detail (
+CREATE TABLE IF NOT EXISTS catalog (
 	id integer NOT NULL PRIMARY KEY,
 	name varchar(50) NOT NULL,
-	description varchar(500) NULL,
+	start_date date NOT NULL,
+	end_date date NOT NULL,
 	status boolean DEFAULT true,
 	created_by varchar(25) DEFAULT 'Online',
 	created_on timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -11,5 +12,4 @@ CREATE TABLE IF NOT EXISTS category_detail (
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO category_detail (id, name) VALUES (1, 'Medical Component');
-INSERT INTO category_detail (id, name) VALUES (2, 'Water Component');
+INSERT INTO catalog (id, name, start_date, end_date) VALUES (1, '2021 Catalog', '2021-04-01', '2022-03-31');

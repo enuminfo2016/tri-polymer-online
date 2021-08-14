@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS delivery_location_detail;
+DROP TABLE IF EXISTS delivery_location;
 
-CREATE TABLE IF NOT EXISTS delivery_location_detail (
+CREATE TABLE IF NOT EXISTS delivery_location (
 	id integer NOT NULL PRIMARY KEY,
 	value_1 varchar(100) NOT NULL, 
 	value_2 varchar(100) NOT NULL, 

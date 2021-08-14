@@ -10,5 +10,7 @@ import com.springcloud.microservice.rest.dto.UserDto;
  */
 public interface IUserService {
 
-	void save(UserDto dto);
+	boolean save(UserDto dto);
+	
+	UserDto getDetailByUsernameAndPassword(String username, String password);
 }
