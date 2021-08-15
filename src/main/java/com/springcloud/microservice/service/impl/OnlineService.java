@@ -163,7 +163,7 @@ public class OnlineService implements IOnlineService {
 		CatalogProductDto dto = new CatalogProductDto();
 		dto.setId(catalogProduct.getId());
 		dto.setTitle(product.getName());
-		dto.setCategory(categoryRepository.findById(Long.parseLong(value)).get().getName());
+		dto.setCategory(categoryRepository.findById(product.getCategory()).get().getName());
 		dto.setQuantity(catalogProduct.getQuantity());
 		dto.setNewPrice(catalogProduct.getPrice());
 		dto.setOldPrice(catalogProduct.getPrice());
