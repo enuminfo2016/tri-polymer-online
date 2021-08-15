@@ -14,5 +14,5 @@ public interface ICatalogProductRepository extends PagingAndSortingRepository<Ca
 
 	Iterable<CatalogProduct> findByCatalog(Long catalog);
 	
-	Iterable<CatalogProduct> findByProduct(Long product);
+	CatalogProduct findByProduct(Long product);
 }

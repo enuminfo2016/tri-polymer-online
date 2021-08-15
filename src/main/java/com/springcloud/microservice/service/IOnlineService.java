@@ -25,8 +25,9 @@ public interface IOnlineService {
 
 	LocationDto getLocationByName(String location);
 	
-	List<CatalogProductDto> getAllCatalogProductsByCategory(String category);
+	List<CatalogProductDto> getAllCatalogProductsByCategory(String value);
 
 	Map<CategoryDto, List<CatalogProductDto>> getAllCatalogProducts();
-
+	
+	CatalogProductDto getCatalogProductDetailByProduct(String value);
 }

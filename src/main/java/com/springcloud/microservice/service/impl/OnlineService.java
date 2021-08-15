@@ -109,7 +109,7 @@ public class OnlineService implements IOnlineService {
 	}
 
 	@Override
-	public List<CatalogProductDto> getAllCatalogProductsByCategory(String category) {
+	public List<CatalogProductDto> getAllCatalogProductsByCategory(String value) {
 		List<CatalogProductDto> dtos = new ArrayList<>();
 		List<String> dates = DateTimeUtil.getInstance().getFinancialYearStartNEndDates();
 		Optional<Catalog> optionalCatalog = catalogRepository.findByStartDateAndEndDate(dates.get(0), dates.get(1));
@@ -120,11 +120,11 @@ public class OnlineService implements IOnlineService {
 				Optional<Product> optionalProduct = productRepository.findById(catalogProduct.getProduct());
 				Product product = (optionalProduct.isPresent() ? optionalProduct.get() : null);
 				if (product != null) {
-					if (Long.parseLong(category) == product.getCategory()) {
+					if (Long.parseLong(value) == product.getCategory()) {
 						CatalogProductDto dto = new CatalogProductDto();
 						dto.setId(catalogProduct.getId());
 						dto.setTitle(product.getName());
-						dto.setCategory(categoryRepository.findById(Long.parseLong(category)).get().getName());
+						dto.setCategory(categoryRepository.findById(Long.parseLong(value)).get().getName());
 						dto.setQuantity(catalogProduct.getQuantity());
 						dto.setNewPrice(catalogProduct.getPrice());
 						dto.setOldPrice(catalogProduct.getPrice());
@@ -153,5 +153,25 @@ public class OnlineService implements IOnlineService {
 			catalogProductByCategoryMap.put(dto, getAllCatalogProductsByCategory(model.getName()));
 		});
 		return catalogProductByCategoryMap;
+	}
+
+	@Override
+	public CatalogProductDto getCatalogProductDetailByProduct(String value) {
+		CatalogProduct catalogProduct = catalogProductRepository.findByProduct(Long.parseLong(value));
+		Optional<Product> optionalProduct = productRepository.findById(Long.parseLong(value));
+		Product product = (optionalProduct.isPresent() ? optionalProduct.get() : null);
+		CatalogProductDto dto = new CatalogProductDto();
+		dto.setId(catalogProduct.getId());
+		dto.setTitle(product.getName());
+		dto.setCategory(categoryRepository.findById(Long.parseLong(value)).get().getName());
+		dto.setQuantity(catalogProduct.getQuantity());
+		dto.setNewPrice(catalogProduct.getPrice());
+		dto.setOldPrice(catalogProduct.getPrice());
+		if (dto.getQuantity() != 0) dto.setSale(Constants.SALE);
+		else dto.setOutOfStock(Constants.OUT_OF_STOCK);
+		List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
+		dto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
+		dto.setDetailsLink(String.valueOf(dto.getId()));
+		return dto;
 	}
 }

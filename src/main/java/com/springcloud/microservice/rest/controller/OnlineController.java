@@ -61,4 +61,10 @@ public class OnlineController {
 		log.info("### AdminController.handleInternalRequestForAllLocations ... ");
 		return onlineService.getAllLocations(value);
 	}
+	
+	@GetMapping(value = RequestPath.CATALOG_PRODUCT_DETAIL_BY_PRODUCT)
+	public CatalogProductDto handleInternalRequestForCatalogProductDetailByProduct(@PathVariable String value) {
+		log.info("### AdminController.handleInternalRequestForCatalogProductDetailByProduct ... ");
+		return onlineService.getCatalogProductDetailByProduct(value);
+	}
 }

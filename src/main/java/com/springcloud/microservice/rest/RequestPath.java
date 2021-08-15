@@ -41,6 +41,7 @@ public class RequestPath {
     
     public static final String CATALOG_PRODUCTS_BY_CATEGORY = "/catalogProductsByCategory/{value}";
     public static final String CATALOG_PRODUCTS = "/catalogProducts";
+    public static final String CATALOG_PRODUCT_DETAIL_BY_PRODUCT = "/catalogProductDetailByProduct/{value}";
     
     public static final String CATEGORIES = "/category";
     public static final String PRODUCTS = "/product";
