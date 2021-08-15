@@ -14,5 +14,5 @@ import com.springcloud.microservice.data.model.ProductImage;
 @Repository
 public interface IProductImageRepository extends PagingAndSortingRepository<ProductImage, Long> {
 	
-	Iterable<ProductImage> findByProduct(Long product);
+	Iterable<ProductImage> findByProductAndMainImg(Long product, Boolean mainImg);
 }

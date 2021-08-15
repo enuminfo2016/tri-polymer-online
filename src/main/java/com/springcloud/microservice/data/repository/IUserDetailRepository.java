@@ -8,11 +8,12 @@ import java.util.Optional;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.springcloud.microservice.data.model.User;
+import com.springcloud.microservice.data.model.UserDetail;
 
 /**
  * @author SIVA KUMAR
  */
-public interface IUserRepository extends PagingAndSortingRepository<User, Long> {
+public interface IUserDetailRepository extends PagingAndSortingRepository<UserDetail, Long> {
 
-	Optional<User> findByUsernameAndPassword(String username, String password);
+	Optional<User> findByPhone(Long phone);
 }

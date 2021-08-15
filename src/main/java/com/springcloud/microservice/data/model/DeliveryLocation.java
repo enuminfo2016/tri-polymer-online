@@ -32,6 +32,9 @@ public class DeliveryLocation implements Serializable {
 	@Column(name = ColumnType.ID)
 	private Long id;
 
+	@Column(name = ColumnType.USER)
+	private Long user;
+
 	@Column(name = ColumnType.VALUE1)
 	private String street;
 
@@ -82,5 +85,13 @@ public class DeliveryLocation implements Serializable {
 
 	public void setLocation(Long location) {
 		this.location = location;
+	}
+
+	public Long getUser() {
+		return user;
+	}
+
+	public void setUser(Long user) {
+		this.user = user;
 	}
 }

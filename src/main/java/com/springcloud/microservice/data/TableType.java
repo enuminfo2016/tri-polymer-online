@@ -18,6 +18,7 @@ public class TableType {
 
 	public static final String USER = "user";
 	public static final String ACCESS = "access";
+	public static final String USER_DETAIL = "user_detail";
 
 	public static final String COUNTRY = "country";
 	public static final String LOCATION = "location";

@@ -59,6 +59,9 @@ public class ProductImage implements Serializable {
 	@Column(name = ColumnType.PRODUCT)
 	private Long product;
 	
+	@Column(name = ColumnType.MAIN_IMG)
+	private Boolean mainImg;
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,5 +100,13 @@ public class ProductImage implements Serializable {
 
 	public void setImgType(String imgType) {
 		this.imgType = imgType;
+	}
+
+	public Boolean getMainImg() {
+		return mainImg;
+	}
+
+	public void setMainImg(Boolean mainImg) {
+		this.mainImg = mainImg;
 	}
 }

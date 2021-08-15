@@ -45,21 +45,6 @@ public class User implements Serializable {
 	@Column(name = ColumnType.ID)
 	private Long id;
 
-	@Column(name = ColumnType.FIRST_NAME)
-	private String firstName;
-
-	@Column(name = ColumnType.MIDDLE_NAME)
-	private String middleName;
-
-	@Column(name = ColumnType.LAST_NAME)
-	private String lastName;
-
-	@Column(name = ColumnType.EMAIL)
-	private String email;
-
-	@Column(name = ColumnType.PHONE)
-	private Long phone;
-
 	@Column(name = ColumnType.PASSWORD)
 	private String password;
 
@@ -68,22 +53,6 @@ public class User implements Serializable {
 	
 	@Column(name = ColumnType.USERNAME)
 	private String username;
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Long getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Long phone) {
-		this.phone = phone;
-	}
 
 	public String getPassword() {
 		return password;
@@ -99,30 +68,6 @@ public class User implements Serializable {
 
 	public void setAccess(String access) {
 		this.access = access;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public Long getId() {

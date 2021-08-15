@@ -12,3 +12,5 @@ INSERT INTO catalog_product (id, catalog_id, product_id, price, quantity) VALUES
 INSERT INTO catalog_product (id, catalog_id, product_id, price, quantity) VALUES (2, 1, 2, 22.00, 45.00);
 INSERT INTO catalog_product (id, catalog_id, product_id, price, quantity) VALUES (3, 1, 3, 12.00, 56.00);
 INSERT INTO catalog_product (id, catalog_id, product_id, price, quantity) VALUES (4, 1, 4, 18.00, 34.00);
+INSERT INTO catalog_product (id, catalog_id, product_id, price, quantity) VALUES (5, 1, 5, 32.00, 43.00);
+INSERT INTO catalog_product (id, catalog_id, product_id, price, quantity) VALUES (6, 1, 6, 56.00, 12.00);

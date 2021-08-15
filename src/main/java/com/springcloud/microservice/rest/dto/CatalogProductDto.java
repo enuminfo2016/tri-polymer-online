@@ -4,6 +4,7 @@
 package com.springcloud.microservice.rest.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,27 +29,28 @@ public class CatalogProductDto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
-	private String product;
+	private String title;
 	private String description;
-	private String category;
+	private double newPrice;
+	private double oldPrice;
+	private String sale;
+	private String outOfStock;
 	private double quantity;
-	private double price;
-	private String htmlValue;
+	private String category;
+	private List<String> images;
+	private String mainImg;
+	private String detailsLink;
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public String getTitle() {
+		return title;
 	}
 
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -59,12 +61,44 @@ public class CatalogProductDto implements Serializable {
 		this.description = description;
 	}
 
-	public String getCategory() {
-		return category;
+	public double getNewPrice() {
+		return newPrice;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setNewPrice(double newPrice) {
+		this.newPrice = newPrice;
+	}
+
+	public double getOldPrice() {
+		return oldPrice;
+	}
+
+	public void setOldPrice(double oldPrice) {
+		this.oldPrice = oldPrice;
+	}
+
+	public String getDetailsLink() {
+		return detailsLink;
+	}
+
+	public void setDetailsLink(String detailsLink) {
+		this.detailsLink = detailsLink;
+	}
+
+	public String getSale() {
+		return sale;
+	}
+
+	public void setSale(String sale) {
+		this.sale = sale;
+	}
+
+	public String getOutOfStock() {
+		return outOfStock;
+	}
+
+	public void setOutOfStock(String outOfStock) {
+		this.outOfStock = outOfStock;
 	}
 
 	public double getQuantity() {
@@ -75,15 +109,31 @@ public class CatalogProductDto implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public double getPrice() {
-		return price;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getHtmlValue() { return htmlValue; }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-	public void setHtmlValue(String htmlValue) { this.htmlValue = htmlValue; }
+	public List<String> getImages() {
+		return images;
+	}
+
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
+
+	public String getMainImg() {
+		return mainImg;
+	}
+
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
 }

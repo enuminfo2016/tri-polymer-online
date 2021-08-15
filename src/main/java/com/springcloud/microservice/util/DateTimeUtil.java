@@ -22,9 +22,9 @@ import org.joda.time.format.ISODateTimeFormat;
 /**
  * @author SIVA KUMAR
  */
-@SuppressWarnings("deprecation")
 public class DateTimeUtil {
 
+	private static final DateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 	private static final DateTimeUtil instance = new DateTimeUtil();
 	private DateTimeUtil() {}
 	
@@ -191,19 +191,20 @@ public class DateTimeUtil {
 		return formatter.format(date);
 	}
 	
-	public List<Date> getFinancialYearStartNEndDates() {
-		List<Date> dates = new ArrayList<>();
-		int financialMonth = 3;
-		int financialYear = new Date().getYear();
+	public List<String> getFinancialYearStartNEndDates() {
+		List<String> dates = new ArrayList<>();
 		Calendar calendar = Calendar.getInstance();
+		int financialMonth = 3;
+		calendar.setTime(new Date());
+		int financialYear = calendar.get(Calendar.YEAR);
 		calendar.set(Calendar.DATE, 1);
 		calendar.set(Calendar.MONTH, financialMonth);
 		calendar.set(Calendar.YEAR, financialYear);
-		dates.add(calendar.getTime());
+		dates.add(FORMATTER.format(calendar.getTime()));
 		calendar.set(Calendar.DATE, 31);
-		calendar.set(Calendar.MONTH, (financialMonth + 1));
+		calendar.set(Calendar.MONTH, (financialMonth - 1));
 		calendar.set(Calendar.YEAR, (financialYear + 1));
-		dates.add(calendar.getTime());
+		dates.add(FORMATTER.format(calendar.getTime()));
 		return dates;
 	}
 }

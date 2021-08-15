@@ -19,10 +19,10 @@ import com.springcloud.microservice.data.model.UserOrder;
 import com.springcloud.microservice.data.model.UserOrderedItem;
 import com.springcloud.microservice.data.repository.IDeliveryLocationRepository;
 import com.springcloud.microservice.data.repository.IProductRepository;
+import com.springcloud.microservice.data.repository.IUserDetailRepository;
 import com.springcloud.microservice.data.repository.IUserOrderDeliveryLocationRepository;
 import com.springcloud.microservice.data.repository.IUserOrderRepository;
 import com.springcloud.microservice.data.repository.IUserOrderedItemRepository;
-import com.springcloud.microservice.data.repository.IUserRepository;
 import com.springcloud.microservice.rest.dto.UserOrderDto;
 import com.springcloud.microservice.rest.dto.UserOrderedItemDto;
 import com.springcloud.microservice.service.IUserOrderService;
@@ -33,7 +33,7 @@ import com.springcloud.microservice.service.IUserOrderService;
 @Service
 public class UserOrderService implements IUserOrderService {
 	
-	@Autowired IUserRepository userRepository;
+	@Autowired IUserDetailRepository userDetailRepository;
 	@Autowired IUserOrderRepository userOrderRepository;
 	@Autowired IUserOrderedItemRepository userOrderedItemRepository;
 	@Autowired IProductRepository productRepository;
@@ -42,7 +42,7 @@ public class UserOrderService implements IUserOrderService {
 
 	@Override
 	public void saveDraftedUserOrder(UserOrderDto dto) throws ParseException {
-		User user = userRepository.findByPhone(dto.getMobile()).get();
+		User user = userDetailRepository.findByPhone(dto.getMobile()).get();
 		UserOrder userOrder = new UserOrder();
 		userOrder.setUser(user.getId());
 		userOrder.setStatus(dto.getStatus());

@@ -67,4 +67,5 @@ public class ColumnType {
 	public static final String IMG_DATA = "img_data";
 	public static final String IMG_NAME = "img_name";
 	public static final String IMG_TYPE = "img_type";
+	public static final String MAIN_IMG = "main_img";
 }

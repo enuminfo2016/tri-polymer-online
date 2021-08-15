@@ -4,7 +4,6 @@
 package com.springcloud.microservice.rest.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springcloud.microservice.rest.RequestPath;
 import com.springcloud.microservice.rest.dto.CatalogProductDto;
-import com.springcloud.microservice.rest.dto.CategoryDto;
 import com.springcloud.microservice.service.IOnlineService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +33,8 @@ public class OnlineController {
 	@Autowired IOnlineService onlineService;
 	
 	@GetMapping(value = RequestPath.CATALOG_PRODUCTS_BY_CATEGORY)
-	public List<CatalogProductDto> handleInternalRequestForWeeklyCatalogProduct(@PathVariable String value) {
-		log.info("### AdminController.handleInternalRequestForWeeklyCatalogProduct ... ");
+	public List<CatalogProductDto> handleInternalRequestForCatalogProductsByCategory(@PathVariable String value) {
+		log.info("### AdminController.handleInternalRequestForCatalogProductsByCategory ... ");
 		return onlineService.getAllCatalogProductsByCategory(value);
 	}
 	
@@ -62,11 +60,5 @@ public class OnlineController {
 	public List<String> handleInternalRequestForAllLocations(@PathVariable String value) {
 		log.info("### AdminController.handleInternalRequestForAllLocations ... ");
 		return onlineService.getAllLocations(value);
-	}
-
-	@GetMapping(value = RequestPath.CATALOG_PRODUCTS)
-	public Map<CategoryDto, List<CatalogProductDto>> handleInternalRequestForCatalogProducts() {
-		log.info("### AdminController.handleInternalRequestForCatalogProducts ... ");
-		return onlineService.getAllCatalogProducts();
 	}
 }

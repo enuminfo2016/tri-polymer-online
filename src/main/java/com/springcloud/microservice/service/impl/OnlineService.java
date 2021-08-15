@@ -4,13 +4,12 @@
 package com.springcloud.microservice.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 
+import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,26 +19,29 @@ import com.springcloud.microservice.data.model.Category;
 import com.springcloud.microservice.data.model.Country;
 import com.springcloud.microservice.data.model.Location;
 import com.springcloud.microservice.data.model.Product;
-import com.springcloud.microservice.data.model.UserOrderedItem;
+import com.springcloud.microservice.data.model.ProductImage;
 import com.springcloud.microservice.data.repository.ICatalogProductRepository;
 import com.springcloud.microservice.data.repository.ICatalogRepository;
 import com.springcloud.microservice.data.repository.ICategoryRepository;
 import com.springcloud.microservice.data.repository.ICountryRepository;
 import com.springcloud.microservice.data.repository.ILocationRepository;
+import com.springcloud.microservice.data.repository.IProductImageRepository;
 import com.springcloud.microservice.data.repository.IProductRepository;
 import com.springcloud.microservice.data.repository.IUserOrderedItemRepository;
 import com.springcloud.microservice.rest.dto.CatalogProductDto;
 import com.springcloud.microservice.rest.dto.CategoryDto;
 import com.springcloud.microservice.rest.dto.LocationDto;
 import com.springcloud.microservice.service.IOnlineService;
+import com.springcloud.microservice.util.Constants;
 import com.springcloud.microservice.util.DateTimeUtil;
 
 /**
  * @author SIVA KUMAR
  */
+@SuppressWarnings("unchecked")
 @Service
 public class OnlineService implements IOnlineService {
-	
+
 	@Autowired ICountryRepository countryRepository;	
 	@Autowired ILocationRepository locationRepository;
 	@Autowired ICategoryRepository categoryRepository;
@@ -47,6 +49,7 @@ public class OnlineService implements IOnlineService {
 	@Autowired ICatalogProductRepository catalogProductRepository;
 	@Autowired ICatalogRepository catalogRepository;
 	@Autowired IUserOrderedItemRepository userOrderedItemRepository;
+	@Autowired IProductImageRepository productImageRepository;
 
 	@Override
 	public List<String> getAllCountries() {
@@ -108,30 +111,28 @@ public class OnlineService implements IOnlineService {
 	@Override
 	public List<CatalogProductDto> getAllCatalogProductsByCategory(String category) {
 		List<CatalogProductDto> dtos = new ArrayList<>();
-		List<Date> dates = DateTimeUtil.getInstance().getFinancialYearStartNEndDates();
-		Optional<Catalog> optionalCatalog = catalogRepository.findByDatesBetween(dates.get(0), dates.get(1));
+		List<String> dates = DateTimeUtil.getInstance().getFinancialYearStartNEndDates();
+		Optional<Catalog> optionalCatalog = catalogRepository.findByStartDateAndEndDate(dates.get(0), dates.get(1));
 		Catalog catalog = (optionalCatalog.isPresent() ? optionalCatalog.get() : null);
 		if (catalog != null) {
-			Iterable<CatalogProduct> catalogProducts = catalogProductRepository.findByCatalog(catalog.getId());
-			for (Iterator<CatalogProduct> iteratorCatalogProduct = catalogProducts.iterator(); iteratorCatalogProduct.hasNext();) {
-				CatalogProduct catalogProduct = iteratorCatalogProduct.next();
+			List<CatalogProduct> catalogProducts = IteratorUtils.toList(catalogProductRepository.findByCatalog(catalog.getId()).iterator());
+			for (CatalogProduct catalogProduct: catalogProducts) {
 				Optional<Product> optionalProduct = productRepository.findById(catalogProduct.getProduct());
 				Product product = (optionalProduct.isPresent() ? optionalProduct.get() : null);
 				if (product != null) {
 					if (Long.parseLong(category) == product.getCategory()) {
 						CatalogProductDto dto = new CatalogProductDto();
 						dto.setId(catalogProduct.getId());
-						dto.setProduct(product.getName());
+						dto.setTitle(product.getName());
 						dto.setCategory(categoryRepository.findById(Long.parseLong(category)).get().getName());
 						dto.setQuantity(catalogProduct.getQuantity());
-						dto.setPrice(catalogProduct.getPrice());
-						double selectedProductQuantity = dto.getQuantity();
-						Iterable<UserOrderedItem> orderedItems = userOrderedItemRepository.findByProduct(catalogProduct.getProduct());
-						for (Iterator<UserOrderedItem> iterator = orderedItems.iterator(); iterator.hasNext();) {
-							UserOrderedItem orderedItem = iterator.next();
-							selectedProductQuantity = selectedProductQuantity - orderedItem.getQuantity();
-						}
-						dto.setQuantity(selectedProductQuantity);
+						dto.setNewPrice(catalogProduct.getPrice());
+						dto.setOldPrice(catalogProduct.getPrice());
+						if (dto.getQuantity() != 0) dto.setSale(Constants.SALE);
+						else dto.setOutOfStock(Constants.OUT_OF_STOCK);
+						List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
+						dto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
+						dto.setDetailsLink(String.valueOf(dto.getId()));
 						dtos.add(dto);
 					}
 				}

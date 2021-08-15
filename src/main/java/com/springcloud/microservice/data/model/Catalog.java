@@ -3,13 +3,9 @@
  */
 package com.springcloud.microservice.data.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.springcloud.microservice.data.ColumnType;
 import com.springcloud.microservice.data.TableType;
@@ -43,26 +39,24 @@ public class Catalog extends Base {
 	private String name;
 
 	@Column(name = ColumnType.START)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date startDate;
+	private String startDate;
 
 	@Column(name = ColumnType.END)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date endDate;
+	private String endDate;
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 

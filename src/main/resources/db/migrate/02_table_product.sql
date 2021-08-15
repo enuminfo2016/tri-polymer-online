@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS product (
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO product (id, name, description, category_id) VALUES  (1, 'Blood Testtube', 'I am blood test tube!!!', 1);
-INSERT INTO product (id, name, description, category_id) VALUES  (2, 'Urine Testtube', 'I am urine test tube!!!', 1);
-INSERT INTO product (id, name, description, category_id) VALUES  (3, '1L Bottle', 'I am one litre bottle!!!', 2);
-INSERT INTO product (id, name, description, category_id) VALUES  (4, '20L Bottle', 'I am 20 litre bottle!!!', 2);
+INSERT INTO product (id, name, category_id) VALUES  (1, 'Medical Tubes', 1);
+INSERT INTO product (id, name, category_id) VALUES  (2, 'Medical Urine', 1);
+INSERT INTO product (id, name, category_id) VALUES  (3, 'One Ltr Customized', 2);
+INSERT INTO product (id, name, category_id) VALUES  (4, 'Half Ltr Customized', 2);
+INSERT INTO product (id, name, category_id) VALUES  (5, 'Thread Cap', 2);
