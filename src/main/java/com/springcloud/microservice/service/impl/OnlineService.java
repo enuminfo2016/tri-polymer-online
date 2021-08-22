@@ -172,7 +172,9 @@ public class OnlineService implements IOnlineService {
 		List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
 		dto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
 		List<String> images = new ArrayList<>();
-		for (ProductImage image: mainProductImages) {
+		images.add(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
+		List<ProductImage> remainingProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.FALSE).iterator());
+		for (ProductImage image: remainingProductImages) {
 			images.add(Constants.IMAGE_PATH + image.getImgName());
 		}
 		dto.setImages(images);
