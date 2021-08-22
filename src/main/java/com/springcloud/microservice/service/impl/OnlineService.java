@@ -171,6 +171,11 @@ public class OnlineService implements IOnlineService {
 		else dto.setOutOfStock(Constants.OUT_OF_STOCK);
 		List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
 		dto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
+		List<String> images = new ArrayList<>();
+		for (ProductImage image: mainProductImages) {
+			images.add(Constants.IMAGE_PATH + image.getImgName());
+		}
+		dto.setImages(images);
 		dto.setDetailsLink(String.valueOf(dto.getId()));
 		return dto;
 	}
