@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springcloud.microservice.rest.RequestPath;
 import com.springcloud.microservice.rest.dto.CatalogProductDto;
+import com.springcloud.microservice.rest.dto.LocationDto;
 import com.springcloud.microservice.service.IOnlineService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,8 +57,8 @@ public class OnlineController {
 		return onlineService.getAllCities(value);
 	}
 	
-	@GetMapping (value = RequestPath.PIN_BY_LOCATION)
-	public List<String> handleInternalRequestForAllLocations(@PathVariable String value) {
+	@GetMapping (value = RequestPath.LOCATIONS_BY_CITY)
+	public List<LocationDto> handleInternalRequestForAllLocations(@PathVariable String value) {
 		log.info("### AdminController.handleInternalRequestForAllLocations ... ");
 		return onlineService.getAllLocations(value);
 	}

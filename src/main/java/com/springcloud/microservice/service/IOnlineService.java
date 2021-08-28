@@ -21,7 +21,7 @@ public interface IOnlineService {
 
 	List<String> getAllCities(String state);
 
-	List<String> getAllLocations(String city);
+	List<LocationDto> getAllLocations(String city);
 
 	LocationDto getLocationByName(String location);
 	

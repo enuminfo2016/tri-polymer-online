@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springcloud.microservice.data.model.Product;
-import com.springcloud.microservice.data.model.User;
+import com.springcloud.microservice.data.model.UserDetail;
 import com.springcloud.microservice.data.model.UserOrder;
 import com.springcloud.microservice.data.model.UserOrderedItem;
 import com.springcloud.microservice.data.repository.IDeliveryLocationRepository;
@@ -42,7 +42,7 @@ public class UserOrderService implements IUserOrderService {
 
 	@Override
 	public void saveDraftedUserOrder(UserOrderDto dto) throws ParseException {
-		User user = userDetailRepository.findByPhone(dto.getMobile()).get();
+		UserDetail user = userDetailRepository.findByPhone(dto.getMobile()).get();
 		UserOrder userOrder = new UserOrder();
 		userOrder.setUser(user.getId());
 		userOrder.setStatus(dto.getStatus());

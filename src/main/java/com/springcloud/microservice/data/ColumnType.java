@@ -40,7 +40,7 @@ public class ColumnType {
 	public static final String ISO = "iso";
 	public static final String STATE = "state";
 	public static final String CITY = "city";
-	public static final String COUNTRY = "country";
+	public static final String COUNTRY = "country_id";
 	public static final String PIN = "pin";
 	public static final String LOCATION = "location_id";
 

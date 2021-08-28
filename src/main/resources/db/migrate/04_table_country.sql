@@ -11,3 +11,5 @@ CREATE TABLE IF NOT EXISTS country (
 	updated_by varchar(25) DEFAULT 'Online',
 	updated_on timestamp DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO country (id, name, iso, isd) VALUES (99, 'India', 'IN',  '91');

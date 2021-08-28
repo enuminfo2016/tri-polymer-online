@@ -86,13 +86,20 @@ public class OnlineService implements IOnlineService {
 	}
 
 	@Override
-	public List<String> getAllLocations(String city) {
-		List<String> values = new ArrayList<>();
+	public List<LocationDto> getAllLocations(String city) {
+		List<LocationDto> dtos = new ArrayList<>();
 		Iterable<Location> models = locationRepository.findByCity(city);
 		for(Location model: models) {
-			values.add(model.getName());
+			LocationDto dto = new LocationDto();
+			dto.setId(model.getId());
+			dto.setName(model.getName());
+			dto.setPin(model.getPin());
+			dto.setCity(model.getCity());
+			dto.setState(model.getState());
+			dto.setCountry(countryRepository.findById(model.getCountry()).get().getName());
+			dtos.add(dto);
 		}
-		return values;
+		return dtos;
 	}
 
 	@Override
