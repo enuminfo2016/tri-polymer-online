@@ -68,4 +68,9 @@ public class ColumnType {
 	public static final String IMG_NAME = "img_name";
 	public static final String IMG_TYPE = "img_type";
 	public static final String MAIN_IMG = "main_img";
+	
+	public static final String CART_VALUE = "cart_value";
+	public static final String SHIP_VALUE = "ship_value";
+	public static final String TAX_VALUE = "tax_value";
+	public static final String PAYMENT_METHOD = "payment_method";
 }

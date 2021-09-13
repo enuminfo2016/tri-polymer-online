@@ -44,6 +44,19 @@ public class UserController {
 		return userOrderService.getUserOrderByStatus(value, StatusTypeEnum.DRAFTED.toString());
 	}
 
+	@PostMapping(value = RequestPath.SAVE_USER_DRAFTED_ITEMS)
+	public void handleInternalRequestForSaveUserDraftedIteams(@RequestBody UserOrderDto[] dtos) {
+		for (UserOrderDto dto : dtos) {
+			dto.setStatus(StatusTypeEnum.DRAFTED.toString());
+			try {
+				log.info("### UserController.handleInternalRequestForSaveUserDraftedIteams ... ");
+				userOrderService.saveUserOrder(dto);
+			} catch (ParseException e) {
+				log.error("### UserController.handleInternalRequestForSaveUserDraftedIteams ... {}", e.getMessage());
+			}
+		}
+	}
+
 	@PostMapping(value = RequestPath.SAVE_USER_ORDERED_ITEMS)
 	public void handleInternalRequestForSaveUserOrderedIteams(@RequestBody UserOrderDto[] dtos) {
 		for (UserOrderDto dto : dtos) {
@@ -51,7 +64,7 @@ public class UserController {
 			dto.setDeliveryStatus(StatusTypeEnum.DELIVERY_SCHEDULED.toString());
 			try {
 				log.info("### UserController.handleInternalRequestForSaveUserOrderedIteams ... ");
-				userOrderService.confirmedUserOrder(dto);
+				userOrderService.saveUserOrder(dto);
 			} catch (ParseException e) {
 				log.error("### UserController.handleInternalRequestForSaveUserOrderedIteams ... {}", e.getMessage());
 			}
@@ -71,7 +84,7 @@ public class UserController {
 			dto.setDeliveryStatus(StatusTypeEnum.DELIVERY_REVERTED.toString());
 			try {
 				log.info("### UserController.handleInternalRequestForCancelledUserOrderedItems ... ");
-				userOrderService.cancelledUserOrder(dto);
+				userOrderService.saveUserOrder(dto);
 			} catch (ParseException e) {
 				log.error("### UserController.handleInternalRequestForCancelledUserOrderedItems ... {}", e.getMessage());
 			}

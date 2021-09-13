@@ -15,4 +15,5 @@ import com.springcloud.microservice.data.model.UserDetail;
 public interface IUserDetailRepository extends PagingAndSortingRepository<UserDetail, Long> {
 
 	Optional<UserDetail> findByPhone(Long phone);
+	Optional<UserDetail> findByPhoneAndEmail(Long phone, String email);
 }
