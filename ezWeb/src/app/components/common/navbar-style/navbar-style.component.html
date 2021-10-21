@@ -1,0 +1,177 @@
+<!-- Start Top Header Area -->
+<section>
+	<div class="container-fluid">
+		<div class="row align-items-center">
+			<div class="col-lg-6 col-md-6">
+				<ul class="top-header-contact-info">
+					<li><a href="+44458895456"><i class="bx bx-phone-call"></i>
+							+91 9686379363</a></li>
+					<li><a href="mailto:tripolymerpvtltd@gmail.com"><i
+							class="bx bx-email"></i> tripolymerpvtltd@gmail.com</a></li>
+				</ul>
+			</div>
+
+			<div class="col-lg-6 col-md-6">
+				<div class="top-header-right">
+					<ul class="d-flex align-items-center justify-content-end">
+						<li></li>
+						<li><a routerLink="/profile-authentication"><i
+								class='bx bx-log-in'></i> Sign In</a></li>
+						<li><a routerLink="/profile-authentication"><i
+								class='bx bx-user'></i> Sign Up</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End Top Header Area -->
+
+<!-- Start Navbar Area -->
+<div class="navbar-area">
+	<div class="tripolymer-responsive-nav">
+		<div class="container">
+			<div class="tripolymer-responsive-menu">
+				<div class="logo">
+					<a routerLink="/"><img src="assets/img/logo1.png" alt="logo"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="tripolymer-nav">
+		<div class="container-fluid">
+			<nav class="navbar navbar-expand-md navbar-light">
+				<a class="navbar-brand" routerLink="/"><img
+					src="assets/img/logo1.png" alt="logo"></a>
+
+				<div class="collapse navbar-collapse mean-menu">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a routerLink="/" class="nav-link"
+							routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}">Home</a></li>
+
+						<li class="nav-item"><a href="javascript:void(0)"
+							class="dropdown-toggle nav-link">Shop</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item" *ngFor="let category of categories"><a
+									routerLink="/shop-full-width/{{category.id}}"
+									class="nav-link" routerLinkActive="active"
+									[routerLinkActiveOptions]="{exact: true}">
+										{{category.name}} </a></li>
+							</ul></li>
+
+						<li class="nav-item"><a routerLink="/about" class="nav-link"
+							routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}">About Us</a></li>
+
+						<!-- <li class="nav-item"><a routerLink="/gallery"
+							class="nav-link" routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}">Gallery</a></li>
+
+						<li class="nav-item"><a routerLink="/faq" class="nav-link"
+							routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}">FAQ</a></li>
+
+						<li class="nav-item"><a routerLink="/wishlist"
+							class="nav-link" routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}">Wishlist</a></li> -->
+
+						<li class="nav-item"><a routerLink="/profile-authentication"
+							class="nav-link" routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}">My Account</a></li>
+
+						<li class="nav-item text-nowrap"><a routerLink="/contact"
+							class="nav-link" routerLinkActive="active"
+							[routerLinkActiveOptions]="{exact: true}"> Contact Us</a></li>
+					</ul>
+
+					<div class="others-option d-flex align-items-center">
+						<div class="option-item">
+							<div class="search-box">
+								<i class='bx bx-search'></i>
+							</div>
+						</div>
+
+						<div class="option-item">
+							<a routerLink="/cart" class="cart-btn"><i
+								class='bx bx-shopping-bag'></i></a> {{cartCount|async}}
+						</div>
+
+						<div class="option-item">
+							<div class="side-menu-btn">
+								<i class="bx bx-menu-alt-left" data-bs-toggle="modal"
+									data-bs-target="#sidebarModal"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<div class="others-option-for-responsive">
+		<div class="container">
+			<div class="dot-menu">
+				<div class="inner">
+					<div class="circle circle-one"></div>
+					<div class="circle circle-two"></div>
+					<div class="circle circle-three"></div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="option-inner">
+					<div
+						class="others-option d-flex align-items-center justify-content-center">
+						<div class="option-item">
+							<div class="search-box">
+								<i class='bx bx-search'></i>
+							</div>
+						</div>
+
+						<div class="option-item">
+							<a routerLink="/cart" class="cart-btn"><i
+								class='bx bx-shopping-bag'></i></a>
+						</div>
+
+						<div class="option-item">
+							<div class="side-menu-btn">
+								<i class="bx bx-menu-alt-left" data-bs-toggle="modal"
+									data-bs-target="#sidebarModal"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Navbar Area -->
+
+<!-- Search Overlay -->
+<div class="search-overlay">
+	<div class="d-table">
+		<div class="d-table-cell">
+			<div class="search-overlay-layer"></div>
+			<div class="search-overlay-layer"></div>
+			<div class="search-overlay-layer"></div>
+
+			<div class="search-overlay-close">
+				<span class="search-overlay-close-line"></span> <span
+					class="search-overlay-close-line"></span>
+			</div>
+
+			<div class="search-overlay-form">
+				<form>
+					<input type="text" class="input-search"
+						placeholder="Search here...">
+					<button type="submit">
+						<i class='bx bx-search'></i>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Search Overlay -->

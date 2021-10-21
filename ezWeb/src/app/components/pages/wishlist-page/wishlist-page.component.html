@@ -1,0 +1,116 @@
+<app-navbar-style-two></app-navbar-style-two>
+
+<!-- Start Page Title Area -->
+<div class="page-title-area" *ngFor="let Content of pageTitle;"
+	style="background-image: url({{Content.bgImage}});">
+	<h1>{{Content.title}}</h1>
+	<ul>
+		<li><a routerLink="/">Home</a></li>
+		<li>{{Content.title}}</li>
+	</ul>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Wishlist Area -->
+<section class="wishlist-area ptb-100">
+	<div class="container">
+		<form>
+			<div class="wishlist-table table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Product</th>
+							<th scope="col">Name</th>
+							<th scope="col">Unit Price</th>
+							<th scope="col">Stock Status</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td class="product-thumbnail"><a
+								routerLink="/simple-product"><img
+									src="assets/img/products/products4.jpg" alt="item"></a></td>
+
+							<td class="product-name"><a routerLink="/simple-product">Ergonomic
+									Desk Sofa</a></td>
+
+							<td class="product-price"><span class="unit-amount">$150.00</span>
+							</td>
+
+							<td class="product-stock-status"><span class="in-stock"><i
+									class='bx bx-check-circle'></i> In Stock</span></td>
+
+							<td class="product-subtotal"><a routerLink="/cart"
+								class="default-btn"><i class="bx bx-shopping-bag"></i> ADD
+									TO CART</a> <a routerLink="/wishlist" class="remove"><i
+									class='bx bx-trash'></i></a></td>
+						</tr>
+
+						<tr>
+							<td class="product-thumbnail"><a
+								routerLink="/simple-product"><img
+									src="assets/img/products/products5.jpg" alt="item"></a></td>
+
+							<td class="product-name"><a routerLink="/simple-product">Office
+									Desk Sofa</a></td>
+
+							<td class="product-price"><span class="unit-amount">$199.00</span>
+							</td>
+
+							<td class="product-stock-status"><span class="in-stock"><i
+									class='bx bx-check-circle'></i> In Stock</span></td>
+
+							<td class="product-subtotal"><a routerLink="/cart"
+								class="default-btn"><i class="bx bx-shopping-bag"></i> ADD
+									TO CART</a> <a routerLink="/wishlist" class="remove"><i
+									class='bx bx-trash'></i></a></td>
+						</tr>
+
+						<tr>
+							<td class="product-thumbnail"><a
+								routerLink="/simple-product"><img
+									src="assets/img/products/products6.jpg" alt="item"></a></td>
+
+							<td class="product-name"><a routerLink="/simple-product">Swivel
+									Sofa</a></td>
+
+							<td class="product-price"><span class="unit-amount">$233.99</span>
+							</td>
+
+							<td class="product-stock-status"><span class="in-stock"><i
+									class='bx bx-check-circle'></i> In Stock</span></td>
+
+							<td class="product-subtotal"><a routerLink="/cart"
+								class="default-btn"><i class="bx bx-shopping-bag"></i> ADD
+									TO CART</a> <a routerLink="/wishlist" class="remove"><i
+									class='bx bx-trash'></i></a></td>
+						</tr>
+
+						<tr>
+							<td class="product-thumbnail"><a
+								routerLink="/simple-product"><img
+									src="assets/img/products/products7.jpg" alt="item"></a></td>
+
+							<td class="product-name"><a routerLink="/simple-product">Home
+									Alisa Sofa</a></td>
+
+							<td class="product-price"><span class="unit-amount">$223.00</span>
+							</td>
+
+							<td class="product-stock-status"><span class="out-stock"><i
+									class='bx bx-x'></i> Out of Stock</span></td>
+
+							<td class="product-subtotal"><a routerLink="/cart"
+								class="default-btn"><i class="bx bx-shopping-bag"></i> ADD
+									TO CART</a> <a routerLink="/wishlist" class="remove"><i
+									class='bx bx-trash'></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+	</div>
+</section>
+<!-- End Wishlist Area -->

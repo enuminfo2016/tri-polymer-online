@@ -1,0 +1,91 @@
+<app-navbar-style></app-navbar-style>
+
+<!-- Start Page Title Area -->
+<div class="page-title-area" *ngFor="let Content of pageTitle;"
+	style="background-image: url({{Content.bgImage}});">
+	<h1>{{Content.title}}</h1>
+	<ul>
+		<li><a routerLink="/">Home</a></li>
+		<li>{{Content.title}}</li>
+	</ul>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Cart Area -->
+<section class="cart-area ptb-100">
+	<div class="container">
+		<form>
+			<div class="cart-table table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Product</th>
+							<th scope="col">Name</th>
+							<th scope="col">Unit Price</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr *ngFor="let Content of cartProducts">
+							<td class="product-thumbnail"><a
+								routerLink="/slider-product/{{Content.detailsLink}}"><img
+									src="{{Content.mainImg}}" alt="item"></a></td>
+
+							<td class="product-name"><a
+								routerLink="/slider-product/{{Content.detailsLink}}">{{Content.title}}</a>
+							</td>
+
+							<td class="product-price"><span class="unit-amount">{{Content.newPrice}}</span>
+							</td>
+
+							<td class="product-quantity">
+								<div class="input-counter">
+									<span class="minus-btn" (click)="qtyMinus(Content)"><i
+										class='bx bx-minus'></i></span> <input value="{{Content.quantity}}"
+										readonly="readonly" /> <span class="plus-btn"
+										(click)="qtyPlus(Content)"><i class='bx bx-plus'></i></span>
+								</div>
+							</td>
+
+							<td class="product-subtotal"><span class="subtotal-amount">{{(Content.quantity
+									* Content.newPrice) | currency:'INR':true: '.1-3'}}</span> <a style="cursor: pointer;"
+								(click)="removeFromCart(Content)" class="remove"><i
+									class='bx bx-trash'></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="cart-buttons">
+				<div class="row align-items-center">
+					<!-- <div class="col-lg-7 col-sm-12 col-md-7">
+						<div class="shopping-coupon-code">
+							<input type="text" class="form-control" placeholder="Coupon code"
+								name="coupon-code" id="coupon-code">
+							<button type="submit">APPLY COUPON</button>
+						</div>
+					</div> -->
+
+					<div class="col-lg-5 col-sm-12 col-md-5 text-right">
+						<a style="cursor: pointer;" (click)="refreshCartProducts()"
+							class="default-btn"><i class='bx bx-refresh'></i> UPDATE CART</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="cart-totals">
+				<ul>
+					<li>Subtotal <span>{{subTotal | currency:'INR':true: '.1-3'}}</span></li>
+					<li>Shipping <span>{{shipValue | currency:'INR':true: '.1-3'}}</span></li>
+					<li>GST <span>{{taxValue | currency:'INR':true: '.1-3'}}</span></li>
+					<li>Total <span>{{grandTotal | currency:'INR':true: '.1-3'}}</span></li>
+				</ul>
+				<a [routerLink]="linkEnabled ? '/checkout' : null" class="default-btn"><i
+					class='bx bx-paper-plane'></i> PROCEED TO CHECKOUT</a>
+			</div>
+		</form>
+	</div>
+</section>
+<!-- End Cart Area -->
