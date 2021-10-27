@@ -1,11 +1,5 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data;
 
-/**
- * @author SIVA KUMAR
- */
 public class TableType {
 	
 	private static TableType instance = null;

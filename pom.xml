@@ -91,17 +91,22 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.6.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.googlejavaformat</groupId>
+            <artifactId>google-java-format</artifactId>
+            <version>1.12.0</version>
+        </dependency>
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -154,7 +159,9 @@
 							<outputDirectory>${project.parent.basedir}/src/main/resources/static/</outputDirectory>
 							<resources>
 								<resource>
+                                    <!--suppress UnresolvedMavenProperty -->
 									<directory>${project.parent.basedir}/eZWeb/dist/ez-web/</directory>
+                                    <!--suppress UnresolvedMavenProperty -->
 									<targetPath>${project.parent.basedir}/src/main/resources/static/</targetPath>
 								</resource>
 							</resources>

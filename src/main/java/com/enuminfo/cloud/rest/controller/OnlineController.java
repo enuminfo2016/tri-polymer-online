@@ -1,38 +1,23 @@
-/**
- * 
- */
 package com.enuminfo.cloud.rest.controller;
-
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.enuminfo.cloud.rest.RequestPath;
 import com.enuminfo.cloud.rest.dto.CatalogProductDto;
 import com.enuminfo.cloud.rest.dto.LocationDto;
 import com.enuminfo.cloud.service.IOnlineService;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-/**
- * @author SIVA KUMAR
- */
+import java.util.List;
+
 @Slf4j
 @RestController
 @CrossOrigin
 @RequestMapping(value = RequestPath.UNSECURED_REST_ENDPOINT)
 public class OnlineController {
-	
-	private static final Logger log = LoggerFactory.getLogger(OnlineController.class);
-	@Autowired IOnlineService onlineService;
-	
+	@Autowired
+	IOnlineService onlineService;
+
 	@GetMapping(value = RequestPath.CATALOG_PRODUCTS_BY_CATEGORY)
 	public List<CatalogProductDto> handleInternalRequestForCatalogProductsByCategory(@PathVariable String value) {
 		log.info("### OnlineController.handleInternalRequestForCatalogProductsByCategory ... ");
@@ -41,7 +26,7 @@ public class OnlineController {
 	
 	@GetMapping (value = RequestPath.COUNTRIES)
 	public List<String> handleInteralRequestForAllCountries() {
-		log.info("### OnlineController.handleInteralRequestForAllCountries ... ");
+		log.info("### OnlineController.handleInternalRequestForAllCountries ... ");
 		return onlineService.getAllCountries();
 	}
 	

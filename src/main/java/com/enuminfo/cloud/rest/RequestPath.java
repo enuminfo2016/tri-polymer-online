@@ -1,11 +1,5 @@
-/**
- * 
- */
 package com.enuminfo.cloud.rest;
 
-/**
- * @author SIVA KUMAR
- */
 public class RequestPath {
 	
 	private static RequestPath instance = null;

@@ -1,25 +1,14 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data.model;
+
+import com.enuminfo.cloud.data.ColumnType;
+import com.enuminfo.cloud.data.TableType;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.enuminfo.cloud.data.ColumnType;
-import com.enuminfo.cloud.data.TableType;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-/**
- * @author SIVA KUMAR
- */
+@EqualsAndHashCode(callSuper = false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,41 +19,12 @@ import lombok.ToString;
 @Table(name = TableType.PRODUCT)
 public class Product extends Base {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    @Column(name = ColumnType.NAME)
+    private String name;
 
-	@Column(name = ColumnType.NAME)
-	private String name;
-	
-	@Column(name = ColumnType.DESCRIPTION)
-	private String description;
+    @Column(name = ColumnType.DESCRIPTION)
+    private String description;
 
-	@Column(name = ColumnType.CATEGORY)
-	private Long category;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Long getCategory() {
-		return category;
-	}
-
-	public void setCategory(Long category) {
-		this.category = category;
-	}
+    @Column(name = ColumnType.CATEGORY)
+    private Long category;
 }
