@@ -1,13 +1,30 @@
+/**
+ * 
+ */
 package com.enuminfo.cloud.data.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.enuminfo.cloud.data.ColumnType;
 import com.enuminfo.cloud.data.TableType;
-import lombok.*;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@EqualsAndHashCode(callSuper = false)
+/**
+ * @author SIVA KUMAR
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,14 +35,43 @@ import java.io.Serializable;
 @Table(name = TableType.ACCESS)
 public class Access implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ColumnType.ID)
-    private Long id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = ColumnType.NAME)
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ColumnType.ID)
+	private Long id;
 
-    @Column(name = ColumnType.DESCRIPTION)
-    private String description;
+	@Column(name = ColumnType.NAME)
+	private String name;
+
+	@Column(name = ColumnType.DESCRIPTION)
+	private String description;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

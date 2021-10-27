@@ -1,8 +1,22 @@
+/**
+ * 
+ */
 package com.enuminfo.cloud;
 
-import com.enuminfo.cloud.util.EnvironmentEnum;
-import lombok.extern.slf4j.Slf4j;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Arrays;
+
+import javax.sql.DataSource;
+
 import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -17,74 +31,86 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.util.ResourceUtils;
+
+import com.enuminfo.cloud.util.EnvironmentEnum;
+
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.sql.DataSource;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
-import java.util.Arrays;
-
-@Slf4j
+/**
+ * @author SIVA KUMAR
+ */
 @SpringBootApplication
 @EnableSwagger2
 public class LaunchTriPolymerOnlineApplication extends SpringBootServletInitializer implements CommandLineRunner {
-	private Model model;
-	@Autowired
-	ApplicationContext applicationContext;
-	@Autowired
-	Environment environment;
+
+	private static final Logger log = LoggerFactory.getLogger(LaunchTriPolymerOnlineApplication.class);
+    private Model model;
+    @Autowired ApplicationContext applicationContext;
+    @Autowired Environment environment;
 
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(LaunchTriPolymerOnlineApplication.class);
-		app.run(args);
+        app.run(args);
 	}
 	
 	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(getClass());
-	}
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(getClass());
+    }
 
 	@Override
 	public void run(String... args) throws Exception {
 		log.info("LaunchTriPolymerOnlineApplication.CommandLineRunner.run() -> {}", args.length);
 		String[] beanNames = applicationContext.getBeanDefinitionNames();
-		Arrays.sort(beanNames);
+        Arrays.sort(beanNames);
 	}
 
+    @Bean
+	public Docket applicationApi() {
+    	return new Docket(DocumentationType.SWAGGER_2).select().build().apiInfo(metaData());
+	}
+
+    private ApiInfo metaData() {
+        try {
+            model = new MavenXpp3Reader().read(new FileReader("pom.xml"));
+        } catch (IOException | XmlPullParserException e) {
+            log.error("LaunchTriPolymerOnlineApplication.metaData() -> {}", e.getMessage());
+        }
+        return new ApiInfo(model.getName(), model.getDescription(), model.getVersion(), "Terms of service",
+                new Contact("EI Team", "https://enuminfo.com/", "enuminfo2016@gmail.com"), "Apache License Version 2.0",
+                "https://www.apache.org/licenses/LICENSE-2.0");
+	}
+	
 	@Bean
-	public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) {
+	public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) throws SQLException, FileNotFoundException {
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Catalog -> {}", dataSource.getConnection().getCatalog());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Name -> {}", dataSource.getConnection().getMetaData().getDriverName());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Version -> {}", dataSource.getConnection().getMetaData().getDriverVersion());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver URL -> {}", dataSource.getConnection().getMetaData().getURL());
+		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver User -> {}", dataSource.getConnection().getMetaData().getUserName());
+		EnvironmentEnum activeEnv = EnvironmentEnum.valueOf(environment.getActiveProfiles()[0].toUpperCase());
+		log.info("Active Profile : {}", activeEnv.name());
+		File dbMigrateFiles = ResourceUtils.getFile("classpath:db/migrate/");
+		File[] listOfFiles = dbMigrateFiles.listFiles();
+		Arrays. sort(listOfFiles);
 		DataSourceInitializer dataSourceInitializer = null;
-		try {
-			log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Catalog -> {}", dataSource.getConnection().getCatalog());
-			log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Name -> {}", dataSource.getConnection().getMetaData().getDriverName());
-			log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Version -> {}", dataSource.getConnection().getMetaData().getDriverVersion());
-			log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver URL -> {}", dataSource.getConnection().getMetaData().getURL());
-			log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver User -> {}", dataSource.getConnection().getMetaData().getUserName());
-			EnvironmentEnum activeEnv = EnvironmentEnum.valueOf(environment.getActiveProfiles()[0].toUpperCase());
-			log.info("Active Profile : {}", activeEnv.name());
-			File dbMigrateFiles = ResourceUtils.getFile("classpath:db/migrate/");
-			File[] listOfFiles = dbMigrateFiles.listFiles();
-			Arrays.sort(listOfFiles);
-			for (File file : listOfFiles) {
-				log.info("=============== validating {} in {} ===============", file.getName(), activeEnv.name());
-				if (!activeEnv.name().equalsIgnoreCase(EnvironmentEnum.PERFORMANCE.name())
-						&& !activeEnv.name().equalsIgnoreCase(EnvironmentEnum.PRODUCTION.name())) {
-					dataSourceInitializer = new DataSourceInitializer();
-					dataSourceInitializer.setDataSource(dataSource);
-					ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
-					resourceDatabasePopulator.addScript(new ClassPathResource("/db/migrate/" + file.getName()));
-					dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
-					log.info("=============== processing {} in {} ===============", file.getName(), activeEnv.name());
-					resourceDatabasePopulator.execute(dataSource);
-				}
+		for (File file : listOfFiles) {
+			log.info("=============== validating {} in {} ===============", file.getName(), activeEnv.name());
+			if (!activeEnv.name().equalsIgnoreCase(EnvironmentEnum.PERFORMANCE.name())
+					&& !activeEnv.name().equalsIgnoreCase(EnvironmentEnum.PRODUCTION.name())) {
+				dataSourceInitializer = new DataSourceInitializer();
+				dataSourceInitializer.setDataSource(dataSource);
+				ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+			    resourceDatabasePopulator.addScript(new ClassPathResource("/db/migrate/" + file.getName()));
+			    dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
+			    log.info("=============== processing {} in {} ===============", file.getName(), activeEnv.name());
+			    resourceDatabasePopulator.execute(dataSource);
 			}
-		} catch (FileNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (dataSourceInitializer != null)
-				dataSourceInitializer = null;
 		}
-		return dataSourceInitializer;
+	    return dataSourceInitializer;
 	}
 }

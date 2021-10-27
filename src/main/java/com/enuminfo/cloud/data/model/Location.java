@@ -1,14 +1,18 @@
+/**
+ *
+ */
 package com.enuminfo.cloud.data.model;
+
+import lombok.*;
+
+import javax.persistence.*;
 
 import com.enuminfo.cloud.data.ColumnType;
 import com.enuminfo.cloud.data.TableType;
-import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@EqualsAndHashCode(callSuper = false)
+/**
+ * @author SIVA KUMAR
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,18 +23,63 @@ import javax.persistence.Table;
 @Table(name = TableType.LOCATION)
 public class Location extends Base {
 
-    @Column(name = ColumnType.NAME)
-    private String name;
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = ColumnType.PIN)
-    private Long pin;
+	@Column(name = ColumnType.NAME)
+	private String name;
 
-    @Column(name = ColumnType.CITY)
-    private String city;
+	@Column(name = ColumnType.PIN)
+	private Long pin;
 
-    @Column(name = ColumnType.STATE)
-    private String state;
+	@Column(name = ColumnType.CITY)
+	private String city;
 
-    @Column(name = ColumnType.COUNTRY)
-    private Long country;
+	@Column(name = ColumnType.STATE)
+	private String state;
+
+	@Column(name = ColumnType.COUNTRY)
+	private Long country;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Long getPin() {
+		return pin;
+	}
+
+	public void setPin(Long pin) {
+		this.pin = pin;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Long getCountry() {
+		return country;
+	}
+
+	public void setCountry(Long country) {
+		this.country = country;
+	}
 }

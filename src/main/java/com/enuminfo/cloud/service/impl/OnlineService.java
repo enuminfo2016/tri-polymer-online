@@ -1,35 +1,54 @@
+/**
+ * 
+ */
 package com.enuminfo.cloud.service.impl;
 
-import com.enuminfo.cloud.data.model.*;
-import com.enuminfo.cloud.data.repository.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
+
+import org.apache.commons.collections.IteratorUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.enuminfo.cloud.data.model.Catalog;
+import com.enuminfo.cloud.data.model.CatalogProduct;
+import com.enuminfo.cloud.data.model.Category;
+import com.enuminfo.cloud.data.model.Country;
+import com.enuminfo.cloud.data.model.Location;
+import com.enuminfo.cloud.data.model.Product;
+import com.enuminfo.cloud.data.model.ProductImage;
+import com.enuminfo.cloud.data.repository.ICatalogProductRepository;
+import com.enuminfo.cloud.data.repository.ICatalogRepository;
+import com.enuminfo.cloud.data.repository.ICategoryRepository;
+import com.enuminfo.cloud.data.repository.ICountryRepository;
+import com.enuminfo.cloud.data.repository.ILocationRepository;
+import com.enuminfo.cloud.data.repository.IProductImageRepository;
+import com.enuminfo.cloud.data.repository.IProductRepository;
+import com.enuminfo.cloud.data.repository.IUserOrderedItemRepository;
 import com.enuminfo.cloud.rest.dto.CatalogProductDto;
 import com.enuminfo.cloud.rest.dto.CategoryDto;
 import com.enuminfo.cloud.rest.dto.LocationDto;
 import com.enuminfo.cloud.service.IOnlineService;
 import com.enuminfo.cloud.util.Constants;
 import com.enuminfo.cloud.util.DateTimeUtil;
-import org.apache.commons.collections.IteratorUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.*;
-
+/**
+ * @author SIVA KUMAR
+ */
 @Service
+@SuppressWarnings({"unchecked"})
 public class OnlineService implements IOnlineService {
-
-	@Autowired
-	ICountryRepository countryRepository;
-	@Autowired
-	ILocationRepository locationRepository;
-	@Autowired
-	ICategoryRepository categoryRepository;
-	@Autowired
-	IProductRepository productRepository;
-	@Autowired
-	ICatalogProductRepository catalogProductRepository;
-	@Autowired
-	ICatalogRepository catalogRepository;
+	
+	@Autowired ICountryRepository countryRepository;	
+	@Autowired ILocationRepository locationRepository;
+	@Autowired ICategoryRepository categoryRepository;
+	@Autowired IProductRepository productRepository;
+	@Autowired ICatalogProductRepository catalogProductRepository;
+	@Autowired ICatalogRepository catalogRepository;
 	@Autowired IUserOrderedItemRepository userOrderedItemRepository;
 	@Autowired IProductImageRepository productImageRepository;
 
@@ -66,7 +85,7 @@ public class OnlineService implements IOnlineService {
 
 	@Override
 	public List<LocationDto> getAllLocations(String city) {
-		List<LocationDto> locationDtos = new ArrayList<>();
+		List<LocationDto> dtos = new ArrayList<>();
 		Iterable<Location> models = locationRepository.findByCity(city);
 		for(Location model: models) {
 			LocationDto dto = new LocationDto();
@@ -78,14 +97,27 @@ public class OnlineService implements IOnlineService {
 			Optional<Country> optional = countryRepository.findById(model.getCountry());
 			if (optional.isPresent()) 
 				dto.setCountry(optional.get().getName());
-			locationDtos.add(dto);
+			dtos.add(dto);
 		}
-		return locationDtos;
+		return dtos;
+	}
+
+	@Override
+	public LocationDto getLocationByName(String location) {
+		LocationDto dto = new LocationDto();
+		Optional<Location> optional = locationRepository.findByName(location);
+		if (optional.isPresent()) {
+			Location model = optional.get();
+			dto.setId(model.getId());
+			dto.setName(model.getName());
+			dto.setCity(model.getCity());
+		}
+		return dto;
 	}
 
 	@Override
 	public List<CatalogProductDto> getProductsByCategory(String value) {
-		List<CatalogProductDto> catalogProductDtos = new ArrayList<>();
+		List<CatalogProductDto> dtos = new ArrayList<>();
 		List<String> dates = DateTimeUtil.getInstance().getFinancialYearStartNEndDates();
 		Optional<Catalog> optionalCatalog = catalogRepository.findByStartDateAndEndDate(dates.get(0), dates.get(1));
 		Catalog catalog = (optionalCatalog.isPresent() ? optionalCatalog.get() : null);
@@ -109,11 +141,11 @@ public class OnlineService implements IOnlineService {
 					List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
 					dto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
 					dto.setDetailsLink(String.valueOf(dto.getId()));
-					catalogProductDtos.add(dto);
+					dtos.add(dto);
 				}
 			}
 		}
-		return catalogProductDtos;
+		return dtos;
 	}
 
 	@Override

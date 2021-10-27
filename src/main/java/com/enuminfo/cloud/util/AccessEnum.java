@@ -6,7 +6,7 @@ package com.enuminfo.cloud.util;
 /**
  * @author SIVA KUMAR
  */
-public enum EnvironmentEnum {
+public enum AccessEnum {
 
-	DEVELOPMENT, PERFORMANCE, PRODUCTION
+	USER, ADMIN
 }

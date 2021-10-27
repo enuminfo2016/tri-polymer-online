@@ -1,14 +1,21 @@
+/**
+ * 
+ */
 package com.enuminfo.cloud.util;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
+/**
+ * @author SIVA KUMAR
+ */
 public class StringUtil {
 
 	private static final Random RANDOM = new SecureRandom();
 	private static final int PASSWORD_LENGTH = 8;
 	private static final StringUtil instance = new StringUtil();
 	private StringUtil() {}
+	
 	public static StringUtil getInstance() {
 		return instance;
 	}
@@ -18,7 +25,7 @@ public class StringUtil {
 		StringBuilder randomPassword = new StringBuilder();
 		for (int i = 0; i < PASSWORD_LENGTH; i++) {
 			int index = RANDOM.nextInt() * letters.length();
-			randomPassword.append(letters.charAt(index));
+			randomPassword.append(letters.substring(index, index + 1));
 		}
 		return randomPassword.toString();
 	}

@@ -1,14 +1,25 @@
+/**
+ * 
+ */
 package com.enuminfo.cloud.data.model;
-
-import com.enuminfo.cloud.data.ColumnType;
-import com.enuminfo.cloud.data.TableType;
-import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@EqualsAndHashCode(callSuper = false)
+import com.enuminfo.cloud.data.ColumnType;
+import com.enuminfo.cloud.data.TableType;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/**
+ * @author SIVA KUMAR
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,12 +30,41 @@ import javax.persistence.Table;
 @Table(name = TableType.CATALOG)
 public class Catalog extends Base {
 
-    @Column(name = ColumnType.NAME)
-    private String name;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = ColumnType.START)
-    private String startDate;
+	@Column(name = ColumnType.NAME)
+	private String name;
 
-    @Column(name = ColumnType.END)
-    private String endDate;
+	@Column(name = ColumnType.START)
+	private String startDate;
+
+	@Column(name = ColumnType.END)
+	private String endDate;
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
