@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DateTimeUtil {
-	private static final DateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
+	private final DateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 	private static final DateTimeUtil instance = new DateTimeUtil();
 	private DateTimeUtil() {}
 	public static DateTimeUtil getInstance() {
