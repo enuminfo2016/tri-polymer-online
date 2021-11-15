@@ -1,21 +1,13 @@
-/**
- * 
- */
 package com.enuminfo.cloud.util;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
-/**
- * @author SIVA KUMAR
- */
 public class StringUtil {
-
 	private static final Random RANDOM = new SecureRandom();
 	private static final int PASSWORD_LENGTH = 8;
 	private static final StringUtil instance = new StringUtil();
 	private StringUtil() {}
-	
 	public static StringUtil getInstance() {
 		return instance;
 	}

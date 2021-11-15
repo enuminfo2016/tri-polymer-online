@@ -1,20 +1,9 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-
 import com.enuminfo.cloud.data.model.UserOrderedItem;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author SIVA KUMAR
- */
+@Repository
 public interface IUserOrderedItemRepository extends PagingAndSortingRepository<UserOrderedItem, Long> {
-
-	Iterable<UserOrderedItem> findByUserOrder(Long order);
-
-	Iterable<UserOrderedItem> findByProduct(Long product);
-	
-	Iterable<UserOrderedItem> findByUserOrderAndProduct(Long order, Long product);
 }

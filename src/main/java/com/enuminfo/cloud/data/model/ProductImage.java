@@ -1,31 +1,13 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data.model;
-
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 
 import com.enuminfo.cloud.data.ColumnType;
 import com.enuminfo.cloud.data.TableType;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import javax.persistence.*;
+import java.io.Serializable;
 
-/**
- * @author SIVA KUMAR
- */
+@EqualsAndHashCode(callSuper = false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,12 +17,6 @@ import lombok.ToString;
 @Entity
 @Table(name = TableType.PRODUCT_IMAGE)
 public class ProductImage implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = ColumnType.ID)
@@ -61,52 +37,4 @@ public class ProductImage implements Serializable {
 	
 	@Column(name = ColumnType.MAIN_IMG)
 	private Boolean mainImg;
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getImgName() {
-		return imgName;
-	}
-
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
-	}
-
-	public byte[] getImgData() {
-		return imgData;
-	}
-
-	public void setImgData(byte[] imgData) {
-		this.imgData = imgData;
-	}
-
-	public Long getProduct() {
-		return product;
-	}
-
-	public void setProduct(Long product) {
-		this.product = product;
-	}
-
-	public String getImgType() {
-		return imgType;
-	}
-
-	public void setImgType(String imgType) {
-		this.imgType = imgType;
-	}
-
-	public Boolean getMainImg() {
-		return mainImg;
-	}
-
-	public void setMainImg(Boolean mainImg) {
-		this.mainImg = mainImg;
-	}
 }

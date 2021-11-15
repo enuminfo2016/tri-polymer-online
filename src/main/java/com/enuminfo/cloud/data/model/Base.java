@@ -1,20 +1,13 @@
-/**
- *
- */
 package com.enuminfo.cloud.data.model;
 
+import com.enuminfo.cloud.data.ColumnType;
 import lombok.*;
 
 import javax.persistence.*;
-
-import com.enuminfo.cloud.data.ColumnType;
-
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author SIVA KUMAR
- */
+@EqualsAndHashCode(callSuper = false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,12 +16,6 @@ import java.util.Date;
 @Getter
 @MappedSuperclass
 public abstract class Base implements Serializable {
-
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = ColumnType.ID)
@@ -50,52 +37,4 @@ public abstract class Base implements Serializable {
 	@Column(name = ColumnType.UPDATED_ON)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public Date getUpdatedOn() {
-		return updatedOn;
-	}
-
-	public void setUpdatedOn(Date updatedOn) {
-		this.updatedOn = updatedOn;
-	}
 }

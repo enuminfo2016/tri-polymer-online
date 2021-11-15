@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.enuminfo.cloud.util;
 
 import java.io.ByteArrayOutputStream;
@@ -9,11 +6,7 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
-/**
- * @author SIVA KUMAR
- */
 public class ImageUtil {
-
 	private static final ImageUtil instance = new ImageUtil();
 	private ImageUtil() {}
 	public static ImageUtil getInstance() {

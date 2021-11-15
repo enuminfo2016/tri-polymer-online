@@ -1,13 +1,6 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data;
 
-/**
- * @author SIVA KUMAR
- */
 public class ColumnType {
-	
 	private static ColumnType instance = null;
 	private ColumnType() { }
 	public static ColumnType getInstance() {

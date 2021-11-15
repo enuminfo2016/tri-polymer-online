@@ -1,13 +1,6 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data;
 
-/**
- * @author SIVA KUMAR
- */
 public class TableType {
-	
 	private static TableType instance = null;
 	private TableType() { }
 	public static TableType getInstance() {
@@ -34,6 +27,4 @@ public class TableType {
 	public static final String USER_ORDERED_ITEM = "user_ordered_item";
 	public static final String USER_ORDERED_DELIVERY_LOCATION = "user_ordered_delivery_location";
 	public static final String PRODUCT_IMAGE = "product_image";
-	
-	public static final String USER_ORDERED_PAYMENT = "user_ordered_payment";
 }

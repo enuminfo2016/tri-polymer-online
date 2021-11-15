@@ -1,18 +1,10 @@
-/**
- * 
- */
 package com.enuminfo.cloud.util;
 
 import java.io.File;
 
-/**
- * @author SIVA KUMAR
- */
 public class Constants {
-	
 	private static final Constants instance = new Constants();
 	private Constants() {}
-	
 	public static Constants getInstance() {
 		return instance;
 	}

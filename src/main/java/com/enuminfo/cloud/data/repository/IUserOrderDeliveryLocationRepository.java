@@ -1,19 +1,10 @@
-/**
- * 
- */
 package com.enuminfo.cloud.data.repository;
 
-import java.util.Optional;
-
-import org.springframework.data.repository.PagingAndSortingRepository;
-
 import com.enuminfo.cloud.data.model.UserOrderDeliveryLocation;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author SIVA KUMAR
- */
+@Repository
 public interface IUserOrderDeliveryLocationRepository
 		extends PagingAndSortingRepository<UserOrderDeliveryLocation, Long> {
-
-	Optional<UserOrderDeliveryLocation> findByUserOrder(Long userOrder);
 }

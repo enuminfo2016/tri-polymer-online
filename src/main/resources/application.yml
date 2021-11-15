@@ -14,9 +14,10 @@ logging:
 ---
 spring:
   config:
-    activate:      on-profile: development
+    activate:
+      on-profile: development
   datasource:
-    url: jdbc:hsqldb:mem:testdb
+    url: jdbc:hsqldb:mem:tri_polymer_online
     username: sa
     password: 
   jpa:
@@ -29,21 +30,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile: test
-  datasource:
-    url: jdbc:mysql://localhost:3306/tri_polymer_online
-    username: root
-    password: root
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: update
-
----
-spring:
-  config:
-    activate:
-      on-profile: stage
+      on-profile: performance
   datasource:
     url: ${JDBC_DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
