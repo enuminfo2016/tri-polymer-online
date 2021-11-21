@@ -127,7 +127,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.6</version>
@@ -173,16 +173,14 @@
 							<outputDirectory>${project.parent.basedir}/src/main/resources/static/</outputDirectory>
 							<resources>
 								<resource>
-									<!--suppress UnresolvedMavenProperty -->
 									<directory>${project.parent.basedir}/eZWeb/dist/ez-web/</directory>
-									<!--suppress UnresolvedMavenProperty -->
 									<targetPath>${project.parent.basedir}/src/main/resources/static/</targetPath>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
