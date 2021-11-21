@@ -15,7 +15,7 @@ logging:
 spring:
   config:
     activate:
-      on-profile: development
+      on-profile: dev
   datasource:
     url: jdbc:hsqldb:mem:tri_polymer_online
     username: sa
@@ -30,7 +30,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile: performance
+      on-profile: test
   datasource:
     url: ${JDBC_DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
