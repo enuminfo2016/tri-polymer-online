@@ -1,16 +1,15 @@
 package com.enuminfo.cloud.service.impl;
 
-import com.enuminfo.cloud.data.repository.ICategoryRepository;
-import com.enuminfo.cloud.rest.dto.CategoryDto;
-import com.enuminfo.cloud.service.IAdminService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.enuminfo.cloud.data.repository.ICategoryRepository;
+import com.enuminfo.cloud.rest.dto.CategoryDto;
+import com.enuminfo.cloud.service.IAdminService;
+
 @Service
 public class AdminService implements IAdminService {
 	@Autowired ICategoryRepository categoryRepository;

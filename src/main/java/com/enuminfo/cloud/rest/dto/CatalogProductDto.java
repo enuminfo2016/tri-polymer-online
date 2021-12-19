@@ -12,6 +12,7 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class CatalogProductDto implements Serializable {
 	private long id;
 	private String title;

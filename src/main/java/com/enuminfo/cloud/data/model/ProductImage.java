@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = TableType.PRODUCT_IMAGE)
+@SuppressWarnings("serial")
 public class ProductImage implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

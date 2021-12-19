@@ -11,6 +11,7 @@ import java.io.Serializable;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public abstract class BaseDto implements Serializable {
 	private long id;
 	private boolean status;

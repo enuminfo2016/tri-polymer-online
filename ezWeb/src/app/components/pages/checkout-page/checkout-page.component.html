@@ -31,7 +31,8 @@
 									<label>Country <span class="required">*</span></label>
 
 									<div class="select-box">
-										<input type="text" class="form-control" formControlName="country" readonly="readonly" />
+										<input type="text" class="form-control"
+											formControlName="country" readonly="readonly" />
 									</div>
 								</div>
 							</div>
@@ -45,8 +46,8 @@
 
 							<div class="col-lg-4 col-md-6">
 								<div class="form-group">
-									<label>Middle Name</label> <input
-										type="text" class="form-control" formControlName="middleName" />
+									<label>Middle Name</label> <input type="text"
+										class="form-control" formControlName="middleName" />
 								</div>
 							</div>
 
@@ -59,8 +60,8 @@
 
 							<div class="col-lg-12 col-md-12">
 								<div class="form-group">
-									<label>Company</label> <input type="text"
-										class="form-control" formControlName="companyName" />
+									<label>Company</label> <input type="text" class="form-control"
+										formControlName="companyName" />
 								</div>
 							</div>
 
@@ -88,14 +89,16 @@
 							<div class="col-lg-6 col-md-6">
 								<div class="form-group">
 									<label>State <span class="required">*</span></label> <input
-										type="text" class="form-control" formControlName="state" readonly="readonly" />
+										type="text" class="form-control" formControlName="state"
+										readonly="readonly" />
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-md-6">
 								<div class="form-group">
 									<label>City <span class="required">*</span></label> <input
-										type="text" class="form-control" formControlName="city" readonly="readonly" />
+										type="text" class="form-control" formControlName="city"
+										readonly="readonly" />
 								</div>
 							</div>
 
@@ -104,7 +107,8 @@
 									<label>Location <span class="required">*</span></label>
 									<ngx-select-dropdown (searchChange)="searchChange($event)"
 										tabindex="0" [multiple]="false" name="location-select"
-										[config]="config" [options]="options" formControlName="location"></ngx-select-dropdown>
+										[config]="config" [options]="options"
+										formControlName="location"></ngx-select-dropdown>
 								</div>
 							</div>
 
@@ -141,16 +145,17 @@
 							<div class="col-lg-12 col-md-12">
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input"
-										id="ship-different-address" formControlName="shipToDifferent" /> <label
-										class="form-check-label" for="ship-different-address">Ship
+										id="ship-different-address" formControlName="shipToDifferent" />
+									<label class="form-check-label" for="ship-different-address">Ship
 										to a different address?</label>
 								</div>
 							</div>
 
 							<div class="col-lg-12 col-md-12">
 								<div class="form-group">
-									<textarea name="notes" id="notes" cols="30" rows="5" formControlName="notes"
-										placeholder="Order Notes" class="form-control"></textarea>
+									<textarea name="notes" id="notes" cols="30" rows="5"
+										formControlName="notes" placeholder="Order Notes"
+										class="form-control"></textarea>
 								</div>
 							</div>
 						</div>
@@ -173,23 +178,27 @@
 									<tr>
 										<td class="order-subtotal"><span>Cart Subtotal</span></td>
 										<td class="order-subtotal-price"><span
-											class="order-subtotal-amount">{{subTotal | currency:'INR':true: '.1-3'}}</span>
-											<input type="hidden" value="{{subTotal}}" formControlName="cartTotal" /></td>
+											class="order-subtotal-amount">{{subTotal |
+												currency:'INR':true: '.1-3'}}</span> <input type="hidden"
+											value="{{subTotal}}" formControlName="cartTotal" /></td>
 									</tr>
 									<tr>
 										<td class="order-shipping"><span>Shipping</span></td>
-										<td class="shipping-price"><span>{{shipValue | currency:'INR':true: '.1-3'}}</span>
-											<input type="hidden" value="{{shipValue}}" formControlName="shipValue" /></td>
+										<td class="shipping-price"><span>{{shipValue |
+												currency:'INR':true: '.1-3'}}</span> <input type="hidden"
+											value="{{shipValue}}" formControlName="shipValue" /></td>
 									</tr>
 									<tr>
 										<td class="order-shipping"><span>Tax</span></td>
-										<td class="shipping-price"><span>{{taxValue | currency:'INR':true: '.1-3'}}</span>
-											<input type="hidden" value="{{taxValue}}" formControlName="taxValue" /></td>
+										<td class="shipping-price"><span>{{taxValue |
+												currency:'INR':true: '.1-3'}}</span> <input type="hidden"
+											value="{{taxValue}}" formControlName="taxValue" /></td>
 									</tr>
 									<tr>
 										<td class="total-price"><span>Order Total</span></td>
 										<td class="product-subtotal"><span
-											class="subtotal-amount">{{grandTotal | currency:'INR':true: '.1-3'}}</span></td>
+											class="subtotal-amount">{{grandTotal |
+												currency:'INR':true: '.1-3'}}</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -198,19 +207,21 @@
 						<div class="payment-box">
 							<div class="payment-method">
 								<p>
-									<input type="radio" id="direct-bank-transfer" value="directBankTransfer" formControlName="payment" /> <label
+									<input type="radio" id="direct-bank-transfer"
+										value="directBankTransfer" formControlName="payment" /> <label
 										for="direct-bank-transfer">Direct Bank Transfer</label> Make
 									your payment directly into our bank account. Please use your
 									Order ID as the payment reference. Your order will not be
 									shipped until the funds have cleared in our account.
 								</p>
 								<p>
-									<input type="radio" id="paypal" value="payPal" formControlName="payment" /> <label
-										for="paypal">PayPal</label>
+									<input type="radio" id="paypal" value="payPal"
+										formControlName="payment" /> <label for="paypal">PayPal</label>
 								</p>
 								<p>
-									<input type="radio" id="cash-on-delivery" value="cashOnDelivery" formControlName="payment" />
-									<label for="cash-on-delivery">Cash on Delivery</label>
+									<input type="radio" id="cash-on-delivery"
+										value="cashOnDelivery" formControlName="payment" /> <label
+										for="cash-on-delivery">Cash on Delivery</label>
 								</p>
 							</div>
 							<button class="default-btn" (click)="placeOrder()">

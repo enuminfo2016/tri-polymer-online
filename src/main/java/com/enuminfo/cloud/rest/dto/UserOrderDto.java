@@ -12,6 +12,7 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class UserOrderDto implements Serializable {
 	private String country;
 	private String firstName;

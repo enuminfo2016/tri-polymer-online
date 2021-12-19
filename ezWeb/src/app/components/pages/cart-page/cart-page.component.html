@@ -50,9 +50,9 @@
 							</td>
 
 							<td class="product-subtotal"><span class="subtotal-amount">{{(Content.quantity
-									* Content.newPrice) | currency:'INR':true: '.1-3'}}</span> <a style="cursor: pointer;"
-								(click)="removeFromCart(Content)" class="remove"><i
-									class='bx bx-trash'></i></a></td>
+									* Content.newPrice) | currency:'INR':true: '.1-3'}}</span> <a
+								style="cursor: pointer;" (click)="removeFromCart(Content)"
+								class="remove"><i class='bx bx-trash'></i></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -77,13 +77,18 @@
 
 			<div class="cart-totals">
 				<ul>
-					<li>Subtotal <span>{{subTotal | currency:'INR':true: '.1-3'}}</span></li>
-					<li>Shipping <span>{{shipValue | currency:'INR':true: '.1-3'}}</span></li>
-					<li>GST <span>{{taxValue | currency:'INR':true: '.1-3'}}</span></li>
-					<li>Total <span>{{grandTotal | currency:'INR':true: '.1-3'}}</span></li>
+					<li>Subtotal <span>{{subTotal | currency:'INR':true:
+							'.1-3'}}</span></li>
+					<li>Shipping <span>{{shipValue | currency:'INR':true:
+							'.1-3'}}</span></li>
+					<li>GST <span>{{taxValue | currency:'INR':true:
+							'.1-3'}}</span></li>
+					<li>Total <span>{{grandTotal | currency:'INR':true:
+							'.1-3'}}</span></li>
 				</ul>
-				<a [routerLink]="linkEnabled ? '/checkout' : null" class="default-btn"><i
-					class='bx bx-paper-plane'></i> PROCEED TO CHECKOUT</a>
+				<a [routerLink]="linkEnabled ? '/checkout' : null"
+					class="default-btn"><i class='bx bx-paper-plane'></i> PROCEED
+					TO CHECKOUT</a>
 			</div>
 		</form>
 	</div>

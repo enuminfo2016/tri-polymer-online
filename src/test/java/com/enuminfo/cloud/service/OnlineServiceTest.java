@@ -1,12 +1,9 @@
 package com.enuminfo.cloud.service;
 
-import com.enuminfo.cloud.data.model.*;
-import com.enuminfo.cloud.data.repository.*;
-import com.enuminfo.cloud.rest.dto.CatalogProductDto;
-import com.enuminfo.cloud.rest.dto.LocationDto;
-import com.enuminfo.cloud.service.impl.OnlineService;
-import com.enuminfo.cloud.util.StringUtil;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,14 +14,27 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.enuminfo.cloud.data.model.Catalog;
+import com.enuminfo.cloud.data.model.CatalogProduct;
+import com.enuminfo.cloud.data.model.Country;
+import com.enuminfo.cloud.data.model.Location;
+import com.enuminfo.cloud.data.model.Product;
+import com.enuminfo.cloud.data.repository.ICatalogProductRepository;
+import com.enuminfo.cloud.data.repository.ICatalogRepository;
+import com.enuminfo.cloud.data.repository.ICategoryRepository;
+import com.enuminfo.cloud.data.repository.ICountryRepository;
+import com.enuminfo.cloud.data.repository.ILocationRepository;
+import com.enuminfo.cloud.data.repository.IProductRepository;
+import com.enuminfo.cloud.rest.dto.CatalogProductDto;
+import com.enuminfo.cloud.rest.dto.LocationDto;
+import com.enuminfo.cloud.service.impl.OnlineService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-public class OnlineServiceTest {
+class OnlineServiceTest {
     @InjectMocks
     OnlineService onlineService;
     @Mock
@@ -41,7 +51,7 @@ public class OnlineServiceTest {
     ICatalogProductRepository catalogProductRepository;
 
     @Test
-    public void testForAllCountries() {
+    void testForAllCountries() {
         log.info("### OnlineServiceTest.testForAllCountries ... ");
         Iterable<Country> countries = new ArrayList<>();
         Mockito.when(countryRepository.findByStatus(Mockito.anyBoolean())).thenReturn(countries);
@@ -50,21 +60,21 @@ public class OnlineServiceTest {
     }
 
     @Test
-    public void testForAllStates() {
+    void testForAllStates() {
         log.info("### OnlineServiceTest.testForAllStates ... ");
         List<String> values = onlineService.getAllStates("India");
         Assertions.assertNotNull(values);
     }
 
     @Test
-    public void testForAllCities() {
+    void testForAllCities() {
         log.info("### OnlineServiceTest.testForAllCities ... ");
         List<String> values = onlineService.getAllCities("Karnataka");
         Assertions.assertNotNull(values);
     }
 
     @Test
-    public void testForAllLocations() {
+    void testForAllLocations() {
             log.info("### OnlineServiceTest.testForAllLocations ... ");
             Iterable<Location> locations = new ArrayList<>();
             Mockito.when(locationRepository.findByCity(Mockito.anyString())).thenReturn(locations);
@@ -73,7 +83,7 @@ public class OnlineServiceTest {
         }
 
         @Test
-        public void testForProductsByCategory() {
+        void testForProductsByCategory() {
             log.info("### OnlineServiceTest.testForProductsByCategory ... ");
             Optional<Catalog> optionalCatalog = Optional.of(new Catalog());
             Mockito.when(catalogRepository.findByStartDateAndEndDate(Mockito.anyString(), Mockito.anyString())).thenReturn(optionalCatalog);

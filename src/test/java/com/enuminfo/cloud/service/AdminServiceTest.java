@@ -20,14 +20,14 @@ import java.util.List;
 @Slf4j
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-public class AdminServiceTest {
+class AdminServiceTest {
     @InjectMocks
     AdminService adminService;
     @Mock
     ICategoryRepository categoryRepository;
 
     @Test
-    public void testForAllCategories() {
+    void testForAllCategories() {
         log.info("### AdminServiceTest.testForAllCategories ... ");
         Iterable<Category> categories = new ArrayList<>();
         Mockito.when(categoryRepository.findByStatus(Mockito.anyBoolean())).thenReturn(categories);

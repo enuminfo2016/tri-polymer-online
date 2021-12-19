@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name = TableType.USER_DETAIL)
+@SuppressWarnings("serial")
 public class UserDetail extends Base {
 	@Column(name = ColumnType.FIRST_NAME)
 	private String firstName;

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name = TableType.CATEGORY)
+@SuppressWarnings("serial")
 public class Category extends Base {
 	@Column(name = ColumnType.NAME)
 	private String name;

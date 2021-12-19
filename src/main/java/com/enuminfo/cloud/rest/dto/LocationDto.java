@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class LocationDto extends BaseDto {
 	private String value1;
 	private String value2;

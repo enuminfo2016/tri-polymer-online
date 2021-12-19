@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = TableType.CATALOG_PRODUCT)
+@SuppressWarnings("serial")
 public class CatalogProduct implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

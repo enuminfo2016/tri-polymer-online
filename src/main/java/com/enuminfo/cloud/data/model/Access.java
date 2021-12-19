@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = TableType.ACCESS)
+@SuppressWarnings("serial")
 public class Access implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

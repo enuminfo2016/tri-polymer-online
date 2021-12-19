@@ -11,6 +11,7 @@ import java.io.Serializable;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class UserOrderedItemDto implements Serializable {
 	private int id;
 	private String product;

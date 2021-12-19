@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class UserDto extends BaseDto {
 	private String firstName;
 	private String middleName;

@@ -40,11 +40,6 @@ public class LaunchTriPolymerOnlineApplication {
 
 	@Bean
 	public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) throws SQLException, FileNotFoundException {
-		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Catalog -> {}", dataSource.getConnection().getCatalog());
-		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Name -> {}", dataSource.getConnection().getMetaData().getDriverName());
-		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver Version -> {}", dataSource.getConnection().getMetaData().getDriverVersion());
-		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver URL -> {}", dataSource.getConnection().getMetaData().getURL());
-		log.info("LaunchTriPolymerOnlineApplication.dataSourceInitializer() - Driver User -> {}", dataSource.getConnection().getMetaData().getUserName());
 		EnvironmentEnum activeEnv = EnvironmentEnum.valueOf(environment.getActiveProfiles()[0].toUpperCase());
 		log.info("Active Profile : {}", activeEnv.name());
 		File dbMigrateFiles = ResourceUtils.getFile("classpath:db/migrate/");

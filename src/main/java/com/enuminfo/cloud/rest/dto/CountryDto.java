@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class CountryDto extends BaseDto {
 	private String name;
 	private String iso;

@@ -15,6 +15,7 @@ import java.util.Date;
 @Setter
 @Getter
 @MappedSuperclass
+@SuppressWarnings("serial")
 public abstract class Base implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

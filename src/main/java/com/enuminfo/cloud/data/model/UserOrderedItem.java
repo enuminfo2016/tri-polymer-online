@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = TableType.USER_ORDERED_ITEM)
+@SuppressWarnings("serial")
 public class UserOrderedItem implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

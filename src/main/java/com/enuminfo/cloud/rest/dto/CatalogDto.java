@@ -11,6 +11,7 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
+@SuppressWarnings("serial")
 public class CatalogDto extends BaseDto {
 	private String name;
 	private List<CatalogProductDto> products;

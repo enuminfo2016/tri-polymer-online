@@ -17,6 +17,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = TableType.USER_ORDER)
+@SuppressWarnings("serial")
 public class UserOrder implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

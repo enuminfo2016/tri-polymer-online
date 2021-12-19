@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = TableType.USER_ORDER)
+@SuppressWarnings("serial")
 public class UserOrderedPayment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

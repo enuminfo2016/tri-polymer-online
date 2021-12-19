@@ -1,21 +1,37 @@
 package com.enuminfo.cloud.service.impl;
 
-import com.enuminfo.cloud.data.model.*;
-import com.enuminfo.cloud.data.repository.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
+
+import org.apache.commons.collections.IteratorUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.enuminfo.cloud.data.model.Catalog;
+import com.enuminfo.cloud.data.model.CatalogProduct;
+import com.enuminfo.cloud.data.model.Category;
+import com.enuminfo.cloud.data.model.Country;
+import com.enuminfo.cloud.data.model.Location;
+import com.enuminfo.cloud.data.model.Product;
+import com.enuminfo.cloud.data.model.ProductImage;
+import com.enuminfo.cloud.data.repository.ICatalogProductRepository;
+import com.enuminfo.cloud.data.repository.ICatalogRepository;
+import com.enuminfo.cloud.data.repository.ICategoryRepository;
+import com.enuminfo.cloud.data.repository.ICountryRepository;
+import com.enuminfo.cloud.data.repository.ILocationRepository;
+import com.enuminfo.cloud.data.repository.IProductImageRepository;
+import com.enuminfo.cloud.data.repository.IProductRepository;
+import com.enuminfo.cloud.data.repository.IUserOrderedItemRepository;
 import com.enuminfo.cloud.rest.dto.CatalogProductDto;
 import com.enuminfo.cloud.rest.dto.CategoryDto;
 import com.enuminfo.cloud.rest.dto.LocationDto;
 import com.enuminfo.cloud.service.IOnlineService;
 import com.enuminfo.cloud.util.Constants;
 import com.enuminfo.cloud.util.DateTimeUtil;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.IteratorUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.*;
-
-@Slf4j
 @Service
 @SuppressWarnings({"unchecked"})
 public class OnlineService implements IOnlineService {
@@ -31,9 +47,7 @@ public class OnlineService implements IOnlineService {
 	@Override
 	public List<String> getAllCountries() {
 		List<String> values = new ArrayList<>();
-		countryRepository.findByStatus(Boolean.TRUE).forEach(model -> {
-			values.add(model.getName());
-		});
+		countryRepository.findByStatus(Boolean.TRUE).forEach(model -> values.add(model.getName()));
 		return values;
 	}
 
@@ -43,9 +57,7 @@ public class OnlineService implements IOnlineService {
 		Optional<Country> optional = countryRepository.findByName(country);
 		if (optional.isPresent()) {
 			Country countryModel = optional.get();
-			locationRepository.findByCountry(countryModel.getId()).forEach(model -> {
-				values.add(model.getName());
-			});
+			locationRepository.findByCountry(countryModel.getId()).forEach(model -> values.add(model.getName()));
 		}
 		return values;
 	}
@@ -53,9 +65,7 @@ public class OnlineService implements IOnlineService {
 	@Override
 	public List<String> getAllCities(String state) {
 		List<String> values = new ArrayList<>();
-		locationRepository.findByState(state).forEach(model -> {
-			values.add(model.getName());
-		});
+		locationRepository.findByState(state).forEach(model -> values.add(model.getName()));
 		return values;
 	}
 

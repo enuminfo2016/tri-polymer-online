@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = TableType.DELIVERY_LOCATION)
+@SuppressWarnings("serial")
 public class DeliveryLocation implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
