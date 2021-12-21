@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Build-Jdk-Spec: 17
-Implementation-Title: Spring Cloud MicroService - TriPolymer Online
-Implementation-Version: 2.5.5
-Main-Class: com.enuminfo.cloud.LaunchTriPolymerOnlineApplication
-Created-By: Maven Integration for Eclipse
-
