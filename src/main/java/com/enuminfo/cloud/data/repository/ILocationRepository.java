@@ -9,7 +9,10 @@ import java.util.Optional;
 @Repository
 public interface ILocationRepository extends PagingAndSortingRepository<Location, Long> {
 	Iterable<Location> findByCountry(Long country);
+
 	Iterable<Location> findByState(String state);
+
 	Iterable<Location> findByCity(String city);
+
 	Optional<Location> findByName(String name);
 }

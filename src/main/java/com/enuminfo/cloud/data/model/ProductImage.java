@@ -22,20 +22,20 @@ public class ProductImage implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = ColumnType.ID)
 	private Long id;
-	
+
 	@Column(name = ColumnType.IMG_NAME)
-	private String imgName; 
-	
+	private String imgName;
+
 	@Column(name = ColumnType.IMG_DATA)
 	@Lob
-    private byte[] imgData;
+	private byte[] imgData;
 
 	@Column(name = ColumnType.IMG_TYPE)
 	private String imgType;
-	
+
 	@Column(name = ColumnType.PRODUCT)
 	private Long product;
-	
+
 	@Column(name = ColumnType.MAIN_IMG)
 	private Boolean mainImg;
 }

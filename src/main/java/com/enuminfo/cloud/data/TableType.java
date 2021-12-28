@@ -2,7 +2,10 @@ package com.enuminfo.cloud.data;
 
 public class TableType {
 	private static TableType instance = null;
-	private TableType() { }
+
+	private TableType() {
+	}
+
 	public static TableType getInstance() {
 		if (instance == null)
 			instance = new TableType();

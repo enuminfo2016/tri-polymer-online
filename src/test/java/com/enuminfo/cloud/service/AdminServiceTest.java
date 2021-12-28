@@ -21,10 +21,8 @@ import java.util.List;
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
 class AdminServiceTest {
-    @InjectMocks
-    AdminService adminService;
-    @Mock
-    ICategoryRepository categoryRepository;
+    @InjectMocks AdminService adminService;
+    @Mock ICategoryRepository categoryRepository;
 
     @Test
     void testForAllCategories() {

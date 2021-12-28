@@ -17,7 +17,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping(value = RequestPath.SECURED_REST_ENDPOINT)
 public class AdminController {
-	@Autowired IAdminService adminService;
+	@Autowired
+	IAdminService adminService;
 
 	@GetMapping(value = RequestPath.CATEGORIES)
 	public List<CategoryDto> handleInternalRequestForAllCategories() {

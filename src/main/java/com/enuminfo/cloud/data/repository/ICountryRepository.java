@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ICountryRepository extends PagingAndSortingRepository<Country, Long> {
 	Optional<Country> findByName(String name);
+
 	Iterable<Country> findByStatus(Boolean status);
 }

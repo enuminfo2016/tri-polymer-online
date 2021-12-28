@@ -12,7 +12,8 @@ import com.enuminfo.cloud.service.IAdminService;
 
 @Service
 public class AdminService implements IAdminService {
-	@Autowired ICategoryRepository categoryRepository;
+	@Autowired
+	ICategoryRepository categoryRepository;
 
 	@Override
 	public List<CategoryDto> getAllCategories() {
@@ -25,5 +26,5 @@ public class AdminService implements IAdminService {
 			categoryDtos.add(categoryDto);
 		});
 		return categoryDtos;
-	}	
+	}
 }

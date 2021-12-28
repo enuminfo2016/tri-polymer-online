@@ -11,19 +11,22 @@ import java.util.List;
 public class DateTimeUtil {
 	private static final DateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 	private static final DateTimeUtil instance = new DateTimeUtil();
-	private DateTimeUtil() {}
+
+	private DateTimeUtil() {
+	}
+
 	public static DateTimeUtil getInstance() {
 		return instance;
 	}
-	
+
 	public java.sql.Timestamp convertUtilDate2Timestamp() {
 		return new Timestamp(new java.util.Date().getTime());
 	}
-	
+
 	public java.sql.Timestamp convertUtilDate2Timestamp(java.util.Date utilDate) {
 		return new Timestamp(utilDate.getTime());
 	}
-	
+
 	public List<String> getFinancialYearStartNEndDates() {
 		List<String> dates = new ArrayList<>();
 		Calendar calendar = Calendar.getInstance();

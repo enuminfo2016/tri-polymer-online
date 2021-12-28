@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ICatalogProductRepository extends PagingAndSortingRepository<CatalogProduct, Long> {
 	Iterable<CatalogProduct> findByCatalog(Long catalog);
+
 	CatalogProduct findByProduct(Long product);
 }

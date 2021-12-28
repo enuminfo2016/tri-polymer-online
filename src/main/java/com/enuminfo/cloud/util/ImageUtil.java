@@ -8,7 +8,10 @@ import java.util.zip.Inflater;
 
 public class ImageUtil {
 	private static final ImageUtil instance = new ImageUtil();
-	private ImageUtil() {}
+
+	private ImageUtil() {
+	}
+
 	public static ImageUtil getInstance() {
 		return instance;
 	}

@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Category extends Base {
 	@Column(name = ColumnType.NAME)
 	private String name;
-	
+
 	@Column(name = ColumnType.DESCRIPTION)
 	private String description;
 }

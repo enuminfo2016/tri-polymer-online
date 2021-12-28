@@ -33,16 +33,24 @@ import com.enuminfo.cloud.util.Constants;
 import com.enuminfo.cloud.util.DateTimeUtil;
 
 @Service
-@SuppressWarnings({"unchecked"})
+@SuppressWarnings({ "unchecked" })
 public class OnlineService implements IOnlineService {
-	@Autowired ICountryRepository countryRepository;	
-	@Autowired ILocationRepository locationRepository;
-	@Autowired ICategoryRepository categoryRepository;
-	@Autowired IProductRepository productRepository;
-	@Autowired ICatalogProductRepository catalogProductRepository;
-	@Autowired ICatalogRepository catalogRepository;
-	@Autowired IUserOrderedItemRepository userOrderedItemRepository;
-	@Autowired IProductImageRepository productImageRepository;
+	@Autowired
+	ICountryRepository countryRepository;
+	@Autowired
+	ILocationRepository locationRepository;
+	@Autowired
+	ICategoryRepository categoryRepository;
+	@Autowired
+	IProductRepository productRepository;
+	@Autowired
+	ICatalogProductRepository catalogProductRepository;
+	@Autowired
+	ICatalogRepository catalogRepository;
+	@Autowired
+	IUserOrderedItemRepository userOrderedItemRepository;
+	@Autowired
+	IProductImageRepository productImageRepository;
 
 	@Override
 	public List<String> getAllCountries() {
@@ -95,8 +103,9 @@ public class OnlineService implements IOnlineService {
 		Optional<Catalog> optionalCatalog = catalogRepository.findByStartDateAndEndDate(dates.get(0), dates.get(1));
 		Catalog catalog = (optionalCatalog.isPresent() ? optionalCatalog.get() : null);
 		if (catalog != null) {
-			List<CatalogProduct> catalogProducts = IteratorUtils.toList(catalogProductRepository.findByCatalog(catalog.getId()).iterator());
-			for (CatalogProduct catalogProduct: catalogProducts) {
+			List<CatalogProduct> catalogProducts = IteratorUtils
+					.toList(catalogProductRepository.findByCatalog(catalog.getId()).iterator());
+			for (CatalogProduct catalogProduct : catalogProducts) {
 				Optional<Product> optionalProduct = productRepository.findById(catalogProduct.getProduct());
 				Product product = (optionalProduct.isPresent() ? optionalProduct.get() : null);
 				Optional<Category> optionalCategory = categoryRepository.findById(Long.parseLong(value));
@@ -109,9 +118,12 @@ public class OnlineService implements IOnlineService {
 					catalogProductDto.setQuantity(catalogProduct.getQuantity());
 					catalogProductDto.setNewPrice(catalogProduct.getPrice());
 					catalogProductDto.setOldPrice(catalogProduct.getPrice());
-					if (catalogProductDto.getQuantity() != 0) catalogProductDto.setSale(Constants.SALE);
-					else catalogProductDto.setOutOfStock(Constants.OUT_OF_STOCK);
-					List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
+					if (catalogProductDto.getQuantity() != 0)
+						catalogProductDto.setSale(Constants.SALE);
+					else
+						catalogProductDto.setOutOfStock(Constants.OUT_OF_STOCK);
+					List<ProductImage> mainProductImages = IteratorUtils.toList(
+							productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
 					catalogProductDto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
 					catalogProductDto.setDetailsLink(String.valueOf(catalogProductDto.getId()));
 					catalogProductDtos.add(catalogProductDto);
@@ -149,13 +161,17 @@ public class OnlineService implements IOnlineService {
 		catalogProductDto.setQuantity(catalogProduct.getQuantity());
 		catalogProductDto.setNewPrice(catalogProduct.getPrice());
 		catalogProductDto.setOldPrice(catalogProduct.getPrice());
-		if (catalogProductDto.getQuantity() != 0) catalogProductDto.setSale(Constants.SALE);
-		else catalogProductDto.setOutOfStock(Constants.OUT_OF_STOCK);
-		List<ProductImage> mainProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
+		if (catalogProductDto.getQuantity() != 0)
+			catalogProductDto.setSale(Constants.SALE);
+		else
+			catalogProductDto.setOutOfStock(Constants.OUT_OF_STOCK);
+		List<ProductImage> mainProductImages = IteratorUtils
+				.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.TRUE).iterator());
 		catalogProductDto.setMainImg(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
 		List<String> images = new ArrayList<>();
 		images.add(Constants.IMAGE_PATH + mainProductImages.get(0).getImgName());
-		List<ProductImage> remainingProductImages = IteratorUtils.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.FALSE).iterator());
+		List<ProductImage> remainingProductImages = IteratorUtils
+				.toList(productImageRepository.findByProductAndMainImg(product.getId(), Boolean.FALSE).iterator());
 		for (ProductImage image : remainingProductImages) {
 			images.add(Constants.IMAGE_PATH + image.getImgName());
 		}

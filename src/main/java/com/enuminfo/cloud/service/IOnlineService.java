@@ -9,10 +9,16 @@ import java.util.Map;
 
 public interface IOnlineService {
 	List<String> getAllCountries();
+
 	List<String> getAllStates(String country);
+
 	List<String> getAllCities(String state);
+
 	List<LocationDto> getAllLocations(String city);
+
 	List<CatalogProductDto> getProductsByCategory(String value);
+
 	Map<CategoryDto, List<CatalogProductDto>> getAllProducts();
+
 	CatalogProductDto getProductDetailByProduct(String value);
 }

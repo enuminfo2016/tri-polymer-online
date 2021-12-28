@@ -28,7 +28,7 @@ public class User implements Serializable {
 
 	@Column(name = ColumnType.ACCESS)
 	private String access;
-	
+
 	@Column(name = ColumnType.USERNAME)
 	private String username;
 }

@@ -25,16 +25,16 @@ public class UserOrderedPayment implements Serializable {
 
 	@Column(name = ColumnType.USER_ORDER)
 	private Long userOrder;
-	
+
 	@Column(name = ColumnType.CART_VALUE)
 	private Double cartValue;
-	
+
 	@Column(name = ColumnType.SHIP_VALUE)
 	private Double shipValue;
-	
+
 	@Column(name = ColumnType.TAX_VALUE)
 	private Double taxValue;
-	
+
 	@Column(name = ColumnType.PAYMENT_METHOD)
 	private String paymentMethod;
 }
