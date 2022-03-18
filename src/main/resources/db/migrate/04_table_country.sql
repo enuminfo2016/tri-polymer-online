@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS country;
-
 CREATE TABLE IF NOT EXISTS country (
 	id integer NOT NULL PRIMARY KEY,
 	name varchar(50) NOT NULL, 

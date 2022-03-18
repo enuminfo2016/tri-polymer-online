@@ -1,24 +1,23 @@
 package com.enuminfo.cloud.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.enuminfo.cloud.rest.dto.CatalogProductDto;
 import com.enuminfo.cloud.rest.dto.CategoryDto;
 import com.enuminfo.cloud.rest.dto.LocationDto;
 
-import java.util.List;
-import java.util.Map;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface IOnlineService {
-	List<String> getAllCountries();
-
-	List<String> getAllStates(String country);
-
-	List<String> getAllCities(String state);
-
-	List<LocationDto> getAllLocations(String city);
-
-	List<CatalogProductDto> getProductsByCategory(String value);
-
-	Map<CategoryDto, List<CatalogProductDto>> getAllProducts();
-
-	CatalogProductDto getProductDetailByProduct(String value);
+	Flux<String> getAllCountries();
+	Flux<String> getAllStates(String country);
+	Flux<String> getAllCities(String state);
+	Flux<LocationDto> getAllLocations(String city);
+	Mono<LocationDto> getLocationByName(String location);
+	
+	Flux<CatalogProductDto> getProductsByCategory(String value);
+	Mono<Map<CategoryDto, List<CatalogProductDto>>> getAllProducts();
+	Mono<CatalogProductDto> getProductDetailByProduct(String value);
 }

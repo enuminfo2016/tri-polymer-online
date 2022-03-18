@@ -8,6 +8,6 @@ import com.enuminfo.cloud.rest.RequestPath;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = RequestPath.SECURITY_REST_ENDPOINT)
-public class SecurityController {
+@RequestMapping(value = RequestPath.REST_ENDPOINT)
+public class SecurityController {	
 }

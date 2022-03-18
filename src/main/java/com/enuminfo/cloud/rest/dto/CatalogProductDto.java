@@ -1,9 +1,15 @@
 package com.enuminfo.cloud.rest.dto;
 
-import lombok.*;
-
 import java.io.Serializable;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -12,8 +18,8 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
-@SuppressWarnings("serial")
 public class CatalogProductDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private String title;
 	private String description;

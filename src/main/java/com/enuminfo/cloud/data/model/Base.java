@@ -1,11 +1,17 @@
 package com.enuminfo.cloud.data.model;
 
-import com.enuminfo.cloud.data.ColumnType;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -14,28 +20,14 @@ import java.util.Date;
 @ToString
 @Setter
 @Getter
-@MappedSuperclass
-@SuppressWarnings("serial")
 public abstract class Base implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = ColumnType.ID)
 	private Long id;
-
-	@Column(name = ColumnType.STATUS)
 	private Boolean status;
-
-	@Column(name = ColumnType.CREATED_BY)
 	private String createdBy;
-
-	@Column(name = ColumnType.CREATED_ON)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdOn;
-
-	@Column(name = ColumnType.UPDATED_BY)
 	private String updatedBy;
-
-	@Column(name = ColumnType.UPDATED_ON)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 }

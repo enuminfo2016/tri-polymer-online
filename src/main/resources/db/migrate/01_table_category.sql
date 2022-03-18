@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS category;
-
 CREATE TABLE IF NOT EXISTS category (
 	id integer NOT NULL PRIMARY KEY,
 	name varchar(50) NOT NULL,

@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS user_ordered_payment;
-
 CREATE TABLE IF NOT EXISTS user_ordered_payment (
 	id integer NOT NULL PRIMARY KEY,
 	user_order_id integer NOT NULL, 

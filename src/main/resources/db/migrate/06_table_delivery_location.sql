@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS delivery_location;
-
 CREATE TABLE IF NOT EXISTS delivery_location (
 	id integer NOT NULL PRIMARY KEY,
 	user_id integer NOT NULL, 

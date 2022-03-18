@@ -1,18 +1,17 @@
 package com.enuminfo.cloud.data.repository;
 
-import com.enuminfo.cloud.data.model.Location;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import com.enuminfo.cloud.data.model.Location;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface ILocationRepository extends PagingAndSortingRepository<Location, Long> {
-	Iterable<Location> findByCountry(Long country);
-
-	Iterable<Location> findByState(String state);
-
-	Iterable<Location> findByCity(String city);
-
-	Optional<Location> findByName(String name);
+public interface ILocationRepository extends ReactiveCrudRepository<Location, Long> {
+	Flux<Location> findByCountry(Long country);
+	Flux<Location> findByState(String state);
+	Flux<Location> findByCity(String city);
+	Mono<Location> findByName(String name);
 }

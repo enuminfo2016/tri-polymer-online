@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 import com.enuminfo.cloud.service.IUserOrderService;
 
 @Service
-public class UserOrderService implements IUserOrderService {
+public class UserOrderService implements IUserOrderService {	
 }

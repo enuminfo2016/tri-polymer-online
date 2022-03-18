@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS location;
-
 CREATE TABLE IF NOT EXISTS location (
 	id integer NOT NULL PRIMARY KEY,
     name varchar(50) NOT NULL,

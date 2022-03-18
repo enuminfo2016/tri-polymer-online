@@ -1,9 +1,15 @@
 package com.enuminfo.cloud.rest.dto;
 
-import lombok.*;
-
 import java.io.Serializable;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -12,16 +18,16 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
-@SuppressWarnings("serial")
 public class UserOrderDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String country;
 	private String firstName;
 	private String middleName;
 	private String lastName;
 	private String companyName;
-	private String adderValue1;
-	private String adderValue2;
-	private String adderValue3;
+	private String addrValue1;
+	private String addrValue2;
+	private String addrValue3;
 	private String state;
 	private String city;
 	private long pin;

@@ -1,11 +1,17 @@
 package com.enuminfo.cloud.data.model;
 
-import com.enuminfo.cloud.data.ColumnType;
-import com.enuminfo.cloud.data.TableType;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -14,18 +20,12 @@ import java.io.Serializable;
 @ToString
 @Setter
 @Getter
-@Entity
-@Table(name = TableType.USER_ORDERED_DELIVERY_LOCATION)
-@SuppressWarnings("serial")
+@Table
 public class UserOrderDeliveryLocation implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = ColumnType.ID)
 	private Long id;
-
-	@Column(name = ColumnType.USER_ORDER)
 	private Long userOrder;
-
-	@Column(name = ColumnType.DELIVERY_LOCATION)
 	private Long deliveryLocation;
 }

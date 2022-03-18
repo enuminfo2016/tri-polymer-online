@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 @Setter
 @Getter
-@SuppressWarnings("serial")
 public class LocationDto extends BaseDto {
+	private static final long serialVersionUID = 1L;
 	private String value1;
 	private String value2;
 	private String value3;

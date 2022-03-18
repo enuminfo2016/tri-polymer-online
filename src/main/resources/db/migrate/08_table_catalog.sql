@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS catalog;
-
 CREATE TABLE IF NOT EXISTS catalog (
 	id integer NOT NULL PRIMARY KEY,
 	name varchar(50) NOT NULL,

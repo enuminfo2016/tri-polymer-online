@@ -1,12 +1,14 @@
 package com.enuminfo.cloud.data.model;
 
-import com.enuminfo.cloud.data.ColumnType;
-import com.enuminfo.cloud.data.TableType;
-import lombok.*;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -15,22 +17,12 @@ import javax.persistence.Table;
 @ToString
 @Setter
 @Getter
-@Entity
-@Table(name = TableType.USER_DETAIL)
-@SuppressWarnings("serial")
+@Table
 public class UserDetail extends Base {
-	@Column(name = ColumnType.FIRST_NAME)
+	private static final long serialVersionUID = 1L;
 	private String firstName;
-
-	@Column(name = ColumnType.MIDDLE_NAME)
 	private String middleName;
-
-	@Column(name = ColumnType.LAST_NAME)
 	private String lastName;
-
-	@Column(name = ColumnType.EMAIL)
 	private String email;
-
-	@Column(name = ColumnType.PHONE)
 	private Long phone;
 }

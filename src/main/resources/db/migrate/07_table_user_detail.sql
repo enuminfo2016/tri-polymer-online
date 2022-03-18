@@ -1,6 +1,4 @@
-DROP TABLE IF EXISTS user_detail;
-
-CREATE TABLE IF NOT EXISTS user_detail (
+CREATE TABLE IF NOT EXISTS user (
 	id integer NOT NULL PRIMARY KEY,
 	first_name varchar(50) NOT NULL,
 	middle_name varchar(50) NULL,

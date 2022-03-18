@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS catalog_product;
-
 CREATE TABLE IF NOT EXISTS catalog_product (
 	id integer NOT NULL PRIMARY KEY,
 	catalog_id integer NOT NULL, 

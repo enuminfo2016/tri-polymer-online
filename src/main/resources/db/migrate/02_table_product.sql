@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS product
-
 CREATE TABLE IF NOT EXISTS product (
 	id integer NOT NULL PRIMARY KEY,
 	name varchar(50) NOT NULL,

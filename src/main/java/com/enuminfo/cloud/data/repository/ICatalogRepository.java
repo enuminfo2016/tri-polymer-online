@@ -1,12 +1,15 @@
 package com.enuminfo.cloud.data.repository;
 
-import com.enuminfo.cloud.data.model.Catalog;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import com.enuminfo.cloud.data.model.Catalog;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface ICatalogRepository extends PagingAndSortingRepository<Catalog, Long> {
-	Optional<Catalog> findByStartDateAndEndDate(String startDate, String endDate);
+public interface ICatalogRepository extends ReactiveCrudRepository<Catalog, Long> {
+	Mono<Catalog> findByStartDateAndEndDate(String startDate, String endDate);
+	Flux<Catalog> findByStatus(Boolean status);
 }

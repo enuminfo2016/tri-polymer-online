@@ -1,9 +1,13 @@
 package com.enuminfo.cloud.data.repository;
 
-import com.enuminfo.cloud.data.model.User;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.enuminfo.cloud.data.model.User;
+
+import reactor.core.publisher.Mono;
+
 @Repository
-public interface IUserRepository extends PagingAndSortingRepository<User, Long> {
+public interface IUserRepository extends ReactiveCrudRepository<User, Long> {
+	Mono<User> findByUsernameAndPassword(String username, String password);
 }

@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS user_ordered_item;
-
 CREATE TABLE IF NOT EXISTS user_ordered_item (
 	id integer NOT NULL PRIMARY KEY,
 	user_order_id integer NOT NULL, 

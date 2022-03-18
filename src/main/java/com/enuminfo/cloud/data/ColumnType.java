@@ -2,10 +2,7 @@ package com.enuminfo.cloud.data;
 
 public class ColumnType {
 	private static ColumnType instance = null;
-
-	private ColumnType() {
-	}
-
+	private ColumnType() { }
 	public static ColumnType getInstance() {
 		if (instance == null)
 			instance = new ColumnType();
@@ -23,7 +20,7 @@ public class ColumnType {
 	public static final String ACCESS = "access";
 	public static final String NAME = "name";
 	public static final String USERNAME = "username";
-
+	
 	public static final String FIRST_NAME = "first_name";
 	public static final String MIDDLE_NAME = "middle_name";
 	public static final String LAST_NAME = "last_name";
@@ -64,7 +61,7 @@ public class ColumnType {
 	public static final String IMG_NAME = "img_name";
 	public static final String IMG_TYPE = "img_type";
 	public static final String MAIN_IMG = "main_img";
-
+	
 	public static final String CART_VALUE = "cart_value";
 	public static final String SHIP_VALUE = "ship_value";
 	public static final String TAX_VALUE = "tax_value";

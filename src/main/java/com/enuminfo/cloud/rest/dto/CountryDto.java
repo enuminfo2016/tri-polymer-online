@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 @Setter
 @Getter
-@SuppressWarnings("serial")
 public class CountryDto extends BaseDto {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String iso;
 	private String isd;

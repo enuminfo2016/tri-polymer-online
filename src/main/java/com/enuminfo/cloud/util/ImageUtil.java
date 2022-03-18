@@ -8,15 +8,11 @@ import java.util.zip.Inflater;
 
 public class ImageUtil {
 	private static final ImageUtil instance = new ImageUtil();
-
-	private ImageUtil() {
-	}
-
+	private ImageUtil() {}
 	public static ImageUtil getInstance() {
 		return instance;
 	}
 
-	// compress the image bytes before storing it in the database
 	public static byte[] compressBytes(byte[] data) {
 		Deflater deflater = new Deflater();
 		deflater.setInput(data);
@@ -35,7 +31,6 @@ public class ImageUtil {
 		return outputStream.toByteArray();
 	}
 
-	// uncompress the image bytes before returning it to the angular application
 	public static byte[] decompressBytes(byte[] data) {
 		Inflater inflater = new Inflater();
 		inflater.setInput(data);
