@@ -1,15 +1,14 @@
 package com.enuminfo.cloud.data.repository;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.enuminfo.cloud.data.model.Country;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
 @Repository
-public interface ICountryRepository extends ReactiveCrudRepository<Country, Long> {
-	Mono<Country> findByName(String name);
-	Flux<Country> findByStatus(Boolean status);
+public interface ICountryRepository extends PagingAndSortingRepository<Country, Long> {
+	Country findByName(String name);
+	List<Country> findByStatus(Boolean status);
 }

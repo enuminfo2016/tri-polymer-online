@@ -180,9 +180,8 @@ public class DateTimeUtil {
 		return formatter.format(date);
 	}
 	
-	public List<String> getFinancialYearStartNEndDates() {
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		List<String> dates = new ArrayList<>();
+	public List<Date> getFinancialYearStartNEndDates() {
+		List<Date> dates = new ArrayList<>();
 		Calendar calendar = Calendar.getInstance();
 		int financialMonth = 3;
 		calendar.setTime(new Date());
@@ -190,11 +189,11 @@ public class DateTimeUtil {
 		calendar.set(Calendar.DATE, 1);
 		calendar.set(Calendar.MONTH, financialMonth);
 		calendar.set(Calendar.YEAR, financialYear);
-		dates.add(formatter.format(calendar.getTime()));
+		dates.add(calendar.getTime());
 		calendar.set(Calendar.DATE, 31);
 		calendar.set(Calendar.MONTH, (financialMonth - 1));
 		calendar.set(Calendar.YEAR, (financialYear + 1));
-		dates.add(formatter.format(calendar.getTime()));
+		dates.add(calendar.getTime());
 		return dates;
 	}
 }

@@ -1,9 +1,9 @@
 package com.enuminfo.cloud.service;
 
+import java.util.List;
+
 import com.enuminfo.cloud.rest.dto.CategoryDto;
 
-import reactor.core.publisher.Flux;
-
 public interface IAdminService {
-	Flux<CategoryDto> getAllCategories();
+	List<CategoryDto> getAllCategories();
 }

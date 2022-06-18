@@ -1,16 +1,16 @@
 package com.enuminfo.cloud.data.repository;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.enuminfo.cloud.data.model.User;
 import com.enuminfo.cloud.data.model.UserOrder;
 
-import reactor.core.publisher.Flux;
-
 @Repository
-public interface IUserOrderRepository extends ReactiveCrudRepository<UserOrder, Long> {
-	Flux<UserOrder> findByStatus(String status);
-	Flux<UserOrder> findByUserAndStatusOrderByOrderedDateDesc(User user, String status);
-	Flux<UserOrder> findByStatusOrDeliveryStatus(String status, String deliveryStatus);
+public interface IUserOrderRepository extends PagingAndSortingRepository<UserOrder, Long> {
+	List<UserOrder> findByStatus(String status);
+	List<UserOrder> findByUserAndStatusOrderByOrderedDateDesc(User user, String status);
+	List<UserOrder> findByStatusOrDeliveryStatus(String status, String deliveryStatus);
 }

@@ -1,13 +1,13 @@
 package com.enuminfo.cloud.data.repository;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.enuminfo.cloud.data.model.UserOrderedItem;
 
-import reactor.core.publisher.Flux;
-
-public interface IUserOrderedItemRepository extends ReactiveCrudRepository<UserOrderedItem, Long> {
-	Flux<UserOrderedItem> findByUserOrder(Long order);
-	Flux<UserOrderedItem> findByProduct(Long product);
-	Flux<UserOrderedItem> findByUserOrderAndProduct(Long order, Long product);
+public interface IUserOrderedItemRepository extends PagingAndSortingRepository<UserOrderedItem, Long> {
+	List<UserOrderedItem> findByUserOrder(Long order);
+	List<UserOrderedItem> findByProduct(Long product);
+	List<UserOrderedItem> findByUserOrderAndProduct(Long order, Long product);
 }

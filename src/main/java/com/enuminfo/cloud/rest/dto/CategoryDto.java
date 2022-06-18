@@ -17,7 +17,7 @@ import lombok.ToString;
 @Getter
 public class CategoryDto extends BaseDto {
 	private static final long serialVersionUID = 1L;
-	private String name;
-	private String description;
+	private String fullName;
+	private String fullDescription;
 	private String htmlValue;
 }

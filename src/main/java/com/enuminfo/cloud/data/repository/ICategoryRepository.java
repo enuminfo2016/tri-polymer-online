@@ -1,15 +1,14 @@
 package com.enuminfo.cloud.data.repository;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.enuminfo.cloud.data.model.Category;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
 @Repository
-public interface ICategoryRepository extends ReactiveCrudRepository<Category, Long> {
-	Mono<Category> findByName(String name);
-	Flux<Category> findByStatus(Boolean status);
+public interface ICategoryRepository extends PagingAndSortingRepository<Category, Long> {
+	Category findByName(String name);
+	List<Category> findByStatus(Boolean status);
 }

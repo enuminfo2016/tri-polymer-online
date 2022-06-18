@@ -1,5 +1,7 @@
 package com.enuminfo.cloud.rest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,6 @@ import com.enuminfo.cloud.rest.dto.LocationDto;
 import com.enuminfo.cloud.service.IOnlineService;
 
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @RestController
@@ -26,49 +26,49 @@ public class OnlineController {
 	@Autowired IOnlineService onlineService;
 	
 	@GetMapping(value = RequestPath.CATALOG_PRODUCTS_BY_CATEGORY)
-	public ResponseEntity<Flux<CatalogProductDto>> handleInternalRequestForCatalogProductsByCategory(@PathVariable String value) {
+	public ResponseEntity<List<CatalogProductDto>> handleInternalRequestForCatalogProductsByCategory(@PathVariable String value) {
 		log.info("### OnlineController.handleInternalRequestForCatalogProductsByCategory ... ");
-		Flux<CatalogProductDto> fluxCatalogProductDtos = onlineService.getProductsByCategory(value);
-        HttpStatus httpStatus = (fluxCatalogProductDtos != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(fluxCatalogProductDtos, httpStatus);
+		List<CatalogProductDto> ListCatalogProductDtos = onlineService.getProductsByCategory(value);
+        HttpStatus httpStatus = (ListCatalogProductDtos != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(ListCatalogProductDtos, httpStatus);
 	}
 	
 	@GetMapping (value = RequestPath.COUNTRIES)
-	public ResponseEntity<Flux<String>> handleInteralRequestForAllCountries() {
+	public ResponseEntity<List<String>> handleInteralRequestForAllCountries() {
 		log.info("### OnlineController.handleInteralRequestForAllCountries ... ");
-		Flux<String> fluxCountries = onlineService.getAllCountries();
-        HttpStatus httpStatus = (fluxCountries != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(fluxCountries, httpStatus);
+		List<String> ListCountries = onlineService.getAllCountries();
+        HttpStatus httpStatus = (ListCountries != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(ListCountries, httpStatus);
 	}
 	
 	@GetMapping (value = RequestPath.STATES_BY_COUNTRY)
-	public ResponseEntity<Flux<String>> handleInternalRequestForAllStates(@PathVariable String value) {
+	public ResponseEntity<List<String>> handleInternalRequestForAllStates(@PathVariable String value) {
 		log.info("### OnlineController.handleInternalRequestForAllStates ... ");
-		Flux<String> fluxStates = onlineService.getAllStates(value);
-        HttpStatus httpStatus = (fluxStates != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(fluxStates, httpStatus);
+		List<String> ListStates = onlineService.getAllStates(value);
+        HttpStatus httpStatus = (ListStates != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(ListStates, httpStatus);
 	}
 	
 	@GetMapping (value = RequestPath.CITIES_BY_STATE)
-	public ResponseEntity<Flux<String>> handleInternalRequestForAllCities(@PathVariable String value) {
+	public ResponseEntity<List<String>> handleInternalRequestForAllCities(@PathVariable String value) {
 		log.info("### OnlineController.handleInternalRequestForAllCities ... ");
-		Flux<String> fluxCities = onlineService.getAllCities(value);
-        HttpStatus httpStatus = (fluxCities != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(fluxCities, httpStatus);
+		List<String> ListCities = onlineService.getAllCities(value);
+        HttpStatus httpStatus = (ListCities != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(ListCities, httpStatus);
 	}
 	
 	@GetMapping (value = RequestPath.LOCATIONS_BY_CITY)
-	public ResponseEntity<Flux<LocationDto>> handleInternalRequestForAllLocations(@PathVariable String value) {
+	public ResponseEntity<List<LocationDto>> handleInternalRequestForAllLocations(@PathVariable String value) {
 		log.info("### OnlineController.handleInternalRequestForAllLocations ... ");
-		Flux<LocationDto> fluxLocationDtos = onlineService.getAllLocations(value);
-        HttpStatus httpStatus = (fluxLocationDtos != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        return new ResponseEntity<>(fluxLocationDtos, httpStatus);
+		List<LocationDto> ListLocationDtos = onlineService.getAllLocations(value);
+        HttpStatus httpStatus = (ListLocationDtos != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(ListLocationDtos, httpStatus);
 	}
 	
 	@GetMapping(value = RequestPath.CATALOG_PRODUCT_DETAIL_BY_PRODUCT)
-	public ResponseEntity<Mono<CatalogProductDto>> handleInternalRequestForCatalogProductDetailByProduct(@PathVariable String value) {
+	public ResponseEntity<CatalogProductDto> handleInternalRequestForCatalogProductDetailByProduct(@PathVariable String value) {
 		log.info("### OnlineController.handleInternalRequestForCatalogProductDetailByProduct ... ");
-		Mono<CatalogProductDto> monoCatalogProductDto = onlineService.getProductDetailByProduct(value);
+		CatalogProductDto monoCatalogProductDto = onlineService.getProductDetailByProduct(value);
         HttpStatus httpStatus = (monoCatalogProductDto != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(monoCatalogProductDto, httpStatus);
 	}
